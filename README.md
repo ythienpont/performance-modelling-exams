@@ -2,6 +2,17 @@
 
 This repository holds a collection of solutions to past exams. Our goal is to make it easy for everyone to access clear, well-organized solutions. Any contribution is welcome—whether it’s adding missing solutions, fixing typos, adding illustrations, improving formatting, or any other helpful tweaks.
 
+## Compiling the PDF
+If you’d like to compile the PDF yourself, you can find setup instructions at [LaTeX Project](https://www.latex-project.org/get/).
+On Linux it's as easy as
+```
+pdflatex main.tex
+```
+Updating the table of contents requires at least two compilations to update the .aux files.
+
+
+For convenience, the PDF is also included in the repository, so you can view the solutions even if you don’t plan to set up LaTeX.
+
 ## Submitting Your Contribution
 
 - **Create a Pull Request**: Make your changes, and if possible, select a reviewer for feedback.
