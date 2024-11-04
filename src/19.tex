@@ -1,0 +1,74 @@
+\exam{2019}
+\begin{problem}{Poisson Process}
+Consider a Poisson process with rate $ \lambda$. Assume $n$ arrivals occurred in between time $0$ and $t$. Give an expression for the probability that no arrivals occur between time $t/3$ and $2t$? Explain how you obtained your expression.
+\end{problem}
+
+\begin{solution}
+We first calculate the interval,we are interested in:
+\begin{align*}
+    <t>&=2t-\frac{1}{3}t\\
+    &= \frac{5}{3}t
+\end{align*}
+The probability of having no arrivals in a specific interval can be written as:
+\begin{align*}
+    P(N(t)=k)&= \frac{\lambda <t> e^{-\lambda <t>}}{k!}
+\end{align*}
+In this case we have k=0 and $<t>=\frac{5}{3}$. This gives us the following expression:
+\begin{align*}
+   P(N(t)=0) &= \left (\frac{\lambda \frac{5}{3}t}{0!}e^{-\lambda 5/3 t}\right )\\
+   &= e^{5/3 t \lambda }
+\end{align*}
+\end{solution}
+
+\begin{problem}{Discrete Time Markov Chains}
+What is the least number of non-zero entries in the transition probability matrix $P$ of a discrete time irreducible aperiodic Markov chain with $n > 2$ states? Does your answer change if we demand that the chain has period 2? Explain your answers.
+\end{problem}
+
+\begin{problem}{Continuous Time Markov Chains}
+Consider a continuous time Markov chain on the state space $S = \{(i, j)|i \geq 0, j \geq 0\}$ and assume the transition rates are such that
+\[
+q_{(i,j),(i+1,j-1)} = 2, \text{ for } j > 0, \quad
+q_{(i,0),(0,i-1)} = 2, \text{ for } i > 0,
+\]
+\[
+q_{(i,j),(i-1,j+1)} = 1, \text{ for } i > 0, \quad
+q_{(0,j),(j+1,0)} = 1.
+\]
+Prove that this Markov chain is positive recurrent.
+\end{problem}
+
+\begin{problem}{You've Got Mail}
+Bob receives both regular mail and spam mail. An incoming
+spam mail is detected as spam with probability $p$ and moved to Bob’s spam folder.
+Undetected spam mails are collected in Bob’s regular mail folder together with all of his
+regular mails. Bob has on average 4 unopened mails in his regular mail folder and 80
+mails in his spam folder. Bob cleans his spam folder every 5 days and opens all of his
+unopened regular mail every 3 hours (on average). Which fraction $p$ of Bob’s incoming
+spam mail is certainly detected as spam?
+\end{problem}
+
+\begin{problem}{Queueing Theory}
+Consider a queue with Poisson arrivals with rate $1$ and exponential
+service times with mean $1/2$. Assume jobs are served first-come-first-serve and at most
+$N$ jobs can wait in the waiting room. Incoming jobs that find the waiting room full
+are lost (i.e., immediately leave). Show that the loss probability in this system equals
+$\frac{1}{2N + 1 - 1}$.
+\end{problem}
+
+\begin{problem}{Queueing Networks}
+Consider a system consisting of 3 queues (labeled 1, 2, and 3)
+and assume we have $N$ jobs in the system. A job requires an exponential amount of
+service with mean $1/\mu_i$ in queue $i$ and moves to queue $(i \mod 3) + 1$ afterwards. Thus
+we have a fixed number of $N$ jobs in the system. The service discipline is first-come-first-serve in each queue. Show that the probability to have $i$ jobs in queue 1 and $j$ jobs
+in queue 2 is given by the following product form
+\[
+\frac{\frac{1}{\mu_1^i \mu_2^j \mu_3^{N-i-j}}}{\sum_{i=0}^{N} \sum_{j=0}^{N-i} \frac{1}{\mu_1^i \mu_2^j \mu_3^{N-i-j}}}.
+\]
+\end{problem}
+
+\begin{problem}{Bianchi Model}
+Discuss the changes required to the 802.11 Bianchi model if we replace
+the uniform backoff time by some other distribution on $\{0, \ldots, W_i -1\}$, for $i = 1, \ldots, m$.
+More specifically, indicate the changes required in the Markov chain used to determine
+the throughput. Why does the uniform distribution seem like a sensible choice?
+\end{problem}

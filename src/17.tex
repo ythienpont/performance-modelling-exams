@@ -1,0 +1,51 @@
+\exam{2017}
+\begin{problem}{Poisson Process}
+Assume requests arrive at a web server farm according to a Poisson process with a rate of 106 requests per hour. Assume $1.3$ million requests arrived in the last hour. What is the probability that at least 650 thousand requests arrived in the last half hour?
+\end{problem}
+\begin{solution}
+We calculate that arrival rate per half hour:
+\begin{align*}
+    \lambda &= \frac{10^6}{2}\\
+    &= 500 000
+\end{align*}
+We are looking for $P(X\geq650 000)$.We can write this as:
+\begin{align*}
+    P(X\geq650 000)&= 1- P(X < 650 000)\\
+    &= 1- P(X \leq 649 999)\\
+\end{align*}
+Looking fist for $P(X \leq 649 999)$, we have: 
+\begin{align*}
+    P(X \leq 649 999) &= \sum_i P(X=i)\\
+    &= \frac{\lambda ^i e^{ -\lambda }}{i!}
+\end{align*}
+Since we are summing up to a very large number (i: 1 $\longrightarrow 649 999$), we can approximate this as 0, leaving us with a 100\% change the probability that least 650 thousand requests arrived in the last half hour.
+\end{solution}
+
+\begin{problem}{Discrete Time Markov Chains}
+Assume we have $m$ white and $m$ black balls that are randomly distributed over $2$ bins such that each bin contains exactly $m$ balls. Next, assume we repeatedly pick one ball from each bin at random and exchange these two balls. Explain how you can model the content of these bins using a discrete time Markov chain (give the state space and transition probabilities). Is your chain irreducible and aperiodic? Derive an expression for the steady state probabilities of this Markov chain (if they exist).
+\end{problem}
+
+\begin{problem}{Discrete Time Markov Chains}
+Give an example of an irreducible DTMC such that
+its invariant distribution equals $(1/10, 1/10, 1/10, 1/10, 1/5, 1/5, 1/5)$.
+\end{problem}
+
+\begin{problem}{Continuous Time Markov Chains}
+Give an example of an irreducible transient CTMC with period $2$. Explain why the chain is transient and has period $2$.
+\end{problem}
+
+\begin{problem}{Continuous Time Markov Chains}
+Consider an $M/D/1$ queue, that is, a queue with Poisson arrivals with rate $\lambda$, an infinite waiting room, one server, and the service time of a customer equals one. Let $X_t$ denote the number of customers in the system at time $t \geq 0$. Is $(X_t)_{t \geq 0}$ a continuous time Markov chain? (Explain your answer.)
+\end{problem}
+
+\begin{problem}{Applications}
+Assume consultant Frank receives on average $120$ assignments per year and on average he has $4$ unfinished assignments. How many days does it on average take before Frank completes an assignment if he processes his assignments in first-come-first-served order? Does your answer change if Frank uses a different order to process his assignments, which also results in an average of $4$ unfinished assignments (explain your answer)? What is the optimal strategy that minimizes the average completion time of an assignment (no proof needed)?
+\end{problem}
+
+\begin{problem}{Applications}
+Consider a Jackson network with $M = 2$ queues. Let $p_{0,1} = 1$, $p_{1,1} = 1/4$, $p_{1,2} = 3/4$, $p_{2,1} = 1/2$, and $p_{2,0} = 1/2$. Determine the arrival rates $\lambda_1$ and $\lambda_2$. What is the average response time of a job in the network if $\mu_1 = 3$ and $\mu_2 = 4$? What is the largest value of $\lambda_0$ for which the system is stable, i.e., the average response time is finite, when $\mu_1 = 3$ and $\mu_2 = 4$?
+\end{problem}
+
+\begin{problem}{Applications}
+Is it possible to adapt Bianchi’s model for the 802.11 network in case we only double the backoff window after every $2$ failed transmissions? If so, briefly describe the changes necessary without going into too much detail.
+\end{problem}

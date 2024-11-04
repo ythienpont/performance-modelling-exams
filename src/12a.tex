@@ -1,0 +1,49 @@
+\exam{2012a}
+\begin{problem}{Bernoulli and Poisson process}
+Indicate whether the Poisson process is a suitable process to model:
+\begin{itemize}
+\item[(a)] The time epochs at which hand-overs take place in a wireless network.
+\item[(b)] The time epochs at which a packet is sent by a single TCP source.
+\item[(c)] The time epochs at which packets are sent by a large number of TCP sources sharing a single link.
+\item[(d)] The time epochs at which emails arrive in your mailbox.
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+\begin{itemize}
+\item[(a)] Not suitable. The handover times are often dependent on different factors such as a user going from one place to the other or network load. This process can therefore not be modelled with a Poisson process.
+\item[(b)] Not suitable. A single TCP source transmits packets according to its congestion control and flow control mechanisms. This means that the packet transmission could be affected by network conditions, previous congestion, and other factors, which can make the time between packet transmissions variable and dependent on these conditions
+\item[(c)] Suitable. In this case, while the individual packet transmissions of TCP sources may not follow a Poisson process, when considering a large number of sources working under varying loads, the aggregated packet arrivals can often approximate a Poisson process, especially if the number of sources is large and they are independently sending packets.
+\item[(d)] Suitable. Email arrivals can often be viewed as independent events, and while they may vary throughout the day, the overall arrival rate can be relatively constant over long periods (in a general sense). Factors like promotions or all at once notifications can cause bursts, but on average, it can often be approximated as arriving at a constant average rate.
+\end{itemize}
+\end{solution}
+
+\begin{problem}{Branching Processes}
+Give an example of a single-type branching process such that
+the extinction probability is equal to $p$, for any $0 < p < 1$.
+\end{problem}
+
+\begin{problem}{Branching Processes}
+Construct a branching process to model the coordinated splitting tree algorithm (CSTA). Whenever $n$ users collide in the CSTA, they are allowed to exchange information such that they split into $n$ groups, each consisting of a single user. Collisions still occur on the channel as colliding users get no information with respect to the arrival times of the new users. Explain how we can determine the maximum stable throughput by means of this branching process.
+\end{problem}
+
+\begin{problem}{Markov Chains}
+Given an example of a Markov chain that is:
+\begin{itemize}
+    \item[(a)] Irreducible, positive recurrent with period $d = 3$.
+    \item[(b)] Irreducible, transient, with period $d = 2$.
+\end{itemize}
+Explain in detail why your examples meet the above requirements.
+\end{problem}
+
+\begin{problem}{Markov Chains}
+Assume we have 2 machines to process jobs. Machine $i$ needs to process $k_i$ jobs, and the processing time of a job on machine $i$ is exponential with mean $1/\mu_i$, respectively, for $i = 1$ and $2$. How can we determine the probability that machine 1 finishes its $k_1$ jobs before machine 2 finishes its $k_2$ jobs (use a Markov chain)? Assume that as soon as one machine finishes its work, it also starts to process pending jobs from the other machine (if any). How can we determine the mean time until all the $k_1 + k_2$ jobs are completed?
+\end{problem}
+
+\begin{problem}{Processor Sharing Queue}
+Assume jobs arrive according to a Poisson process with rate $\lambda$ at a single server. A job requires an exponential amount of work with mean $1/\mu$. All the jobs in the queue share the single server, meaning a job is served at rate $\mu/n$ whenever there are $n$ jobs in the queue. Set up a Markov chain to determine the number of jobs in the queue (at arrival or departure times). Determine the condition for positive recurrence and give an explicit expression for the steady state probabilities. Give an expression for the queue length distribution at arrival times only. Do you recognize the latter expression from an earlier course?
+\end{problem}
+
+\begin{problem}{Bianchi Model}
+Assume we use the simple ALOHA scheme to retransmit a packet instead of the binary exponential back-off algorithm, with the additional requirement that a packet can be retransmitted at most $m > 0$ times. Discuss the changes required to the Bianchi model to determine the saturation throughput. How does $m$ influence the saturation throughput?
+\end{problem}

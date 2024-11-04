@@ -1,0 +1,39 @@
+\exam{2018}
+\begin{problem}{Poisson Process}
+ Consider a Poisson process with rate $\lambda =2$. Assume 4 arrivals occurred in between time 0 and 1. What is the probability that you observe another 4 arrivals between time 1 and 2? Explain your answer.
+\end{problem}
+
+\begin{solution}
+We have: $\lambda =2$. Using the following formula for Poisson distribution:
+\begin{align*}
+    P(N=4)&= \lambda^4 \frac{e^{-\lambda}}{k!}\\
+    & \approx 0.0902
+\end{align*}
+This gives a $0.0902$ chance of observing another 4 arrivals between 1 and 2.
+\end{solution}
+
+\begin{problem}{Discrete Time Markov chains}
+Give an example of an irreducible Markov chain
+with 5 states that has period $2$. Explain your answer.
+\end{problem}
+
+\begin{problem}{Discrete Time Markov Chains}
+Consider a discrete-time positive recurrent Markov chain and let $m_{i,j}$ be the mean number of steps to reach state $j$ from state $i$. Prove or disprove that $m_{j,j} \leq m_{i,j} + m_{j,i}$.
+\end{problem}
+
+\begin{problem}{Continuous Time Markov Chains}
+Give an example of an infinite state, transient continuous time Markov chain such that its uniformized and embedded Markov chain are characterized by the same transition probability matrix. Explain your answer.
+\end{problem}
+
+\begin{problem}{Server Farm}
+Consider a server farm consisting of $2$ servers. Jobs arrive according to a Poisson process with rate $\lambda$ and are probabilistically split among the two servers with a fraction $p$ of the jobs going to server $1$. The service time of a job on server $i$ is exponential with mean $1/\mu_i$, for $i = 1, 2$. Give an expression for the mean response time of a job in the server farm. How does your result change if the service times are
+not exponential but have the same means?
+\end{problem}
+
+\begin{problem}{Little's Law and PASTA}
+Consider a system that allows at most $120$ jobs in the system. Jobs arrive as a Poisson process with rate $10$ and are dropped when there are already $120$ jobs in the system. If you know that the steady state probability of having $120$ jobs in this system is $0.05$ and the mean number of jobs in the system is $76$, then what is the mean response time of a job that enters the system (that is, of a job that is not dropped)?
+\end{problem}
+
+\begin{problem}{Wireless Networks}
+Consider a cell in a wireless network that can support up to $C$ simultaneous calls. Assume the mean time until a call ends or leaves the cell is exponential with parameter $\mu$, while new calls arrive at rate $\lambda_n$ and handover calls at rate $\lambda_h$. Assume we have $g \geq 1$ guard channels, meaning handover calls are blocked when all the $C$ channels are busy, while new calls are also blocked when there are $C - g$ or more busy channels. Indicate how to adapt the Markov chain of the Erlang-B loss system. Derive an expression for the steady state probabilities.
+\end{problem}

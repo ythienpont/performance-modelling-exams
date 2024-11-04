@@ -1,0 +1,51 @@
+\exam{2020}
+\begin{problem}{Spam Mail}
+ Suppose spam mail arrives in your mailbox as a Poisson process with rate $\lambda_s$, regular mail arrives as a Poisson process with rate $\lambda_r$ and both processes are independent. (1) What is the mean time between any two mails? (2) What is the probability that exactly 5 out of 10 consecutive mails are spam mails?
+ \end{problem}
+ \begin{solution}
+ (1) Since spam and regular mails arrive as two independent Poisson processes, with rates $\lambda_s$ and $\lambda_r$ respectively, the combined arrival process (any type of mail) is also a Poisson process with rate:
+ \begin{align*}
+     \lambda= \lambda_s +\lambda_r
+ \end{align*}
+ This gives us a mean inter-arrival time of:
+ \begin{align*}
+    \frac{1}{\lambda}= \frac{1}{\lambda_s +\lambda_r}
+ \end{align*}
+ \\
+ (2) The probability that any given mail is spam is given with the following distribution:
+ \begin{align*}
+     p_{spam}=\frac{\lambda_s}{\lambda_s +\lambda_r}
+ \end{align*}
+ Using binomial distribution we can deduce given=10 (total mails) and a probability $p_spam$ of being spam, the probability that exactly k=5 of these mails are spam is:
+\begin{align*}
+    p(5,10)&=\binom{10}{5} \left (\frac{\lambda_s}{\lambda_s +\lambda_5}\right )^5 \left ( 1- \frac{\lambda_s}{\lambda_s +\lambda_5} \right ) ^{10}
+\end{align*}
+\end{solution}
+
+\begin{problem}{Discrete Time Markov Chains} 
+Let \( d_i \) be the period of state \( i \) in a DTMC. Give an example of a DTMC with 7 states (by defining \( P \)) such that \( (d_1, d_2, \dots, d_7) = (3, 3, 2, 1, 3, 2, 3) \) and exactly 2 states are recurrent. Explain your answer.
+\end{problem}
+
+\begin{problem}{Discrete Time Markov Chains}
+Consider a DTMC with state space \( \mathbb{Z} \). Let \( p_{0,1} = \frac{1}{2} \), \( p_{i,i+1} = e^{-i/100} \) for \( i > 0 \), and \( p_{i,i-1} = e^{i/100} \) for \( i < 0 \). Further, let \( p_{i,i+1} = 1 - p_{i,i-1} \) for \( i \in \mathbb{Z} \). Is this DTMC positive recurrent, null recurrent, or transient? Prove your answer.
+\end{problem}
+
+\begin{problem}{Repairing Servers}
+Consider two machines maintained by a single repairman. Machine \( i \), for \( i = 1, 2 \), operates for an exponentially distributed amount of time with mean \( 1/\gamma_i \) before breaking down. The repair time for machine \( i \) is also exponential with mean \( 1/\beta_i \), but the repairman can only work on one machine at a time. Assume that machines are repaired in the order in which they fail. Set up a CTMC to find the long-run proportions of time that each machine is working (no need to compute these values). How does your answer change if the repairman always works on machine 1 first if it fails?
+\end{problem}
+
+\begin{problem}{Server Order}
+Assume jobs arrive in a system with 2 servers as a Poisson process with rate \( \lambda \). All jobs must be served by both servers, and the service time of a job in server \( i \) is exponential with mean \( 1/\mu_i \), for \( i = 1, 2 \). Assume a fraction \( p \) of the incoming jobs first joins server 1 and then proceeds to server 2, while the remaining fraction \( 1 - p \) visits both servers in the reversed order. Can you use a Jackson network to determine the optimal choice of \( p \) such that the time that a job spends in the system is minimized?
+\end{problem}
+
+\begin{problem}{M/M/1 with Group Arrivals}
+Consider an M/M/1 queue with arrival rate \( \lambda \) and service rate \( \mu \), but instead of having one arrival at a time, arrivals occur in groups of 2. Set up a CTMC to study this queueing model. Write down the global balance equations and use them to prove that
+   \[
+   \lambda \pi_{i-2} + \lambda \pi_{i-1} = \mu \pi_i,
+   \]
+   holds for \( i \geq 2 \), where \( \pi_i \) represents the stationary probability that the queue contains \( i \) jobs.
+\end{problem}
+
+\begin{problem}{Blocking Time}
+Consider an Erlang-B system (i.e., an M/M/C/C queue). Such a system alternates between periods where incoming calls are blocked and periods where calls are accepted. What is the mean duration of a period during which calls are blocked? How can you determine the mean duration of a period during which calls are accepted?
+\end{problem}

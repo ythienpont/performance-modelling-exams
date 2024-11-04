@@ -1,0 +1,50 @@
+\exam{2010a}
+\begin{problem}{Bernoulli and Poisson Processes}
+Indicate whether the following processes can be well modelled by a Bernoulli or Poisson process:
+\begin{itemize}
+    \item[(a)] The process that indicates when a read or write request is generated when modelling a hard disk.
+    \item[(b)] The time points at which buses arrive at a bus stop.
+    \item[(c)] The time points at which students log in to Blackboard for a specific course.
+\end{itemize}
+\end{problem}
+
+\begin{solution}
+\begin{itemize}
+\item[(a)] This process can be described as a Poisson process as reading and writing from a disc is continuous and can occur at any point in time.
+\item[(b)] Assuming the bus follows a regular schedule (This scenario is obviously not realistic in Belgium), this process can be described as a Bernoulli process. Each time interval we have a possibility p that the bus will arrive and the arrival of the bus in one interval is independent of the arrival of the bus in the next interval.
+\item[(c)] We may observe that more students will login before the exam of a course or a specific time where the course is given in class. However, students can login at any point in time. This is a continuos process and can therefore be described as a Poisson process.
+\end{itemize}
+\end{solution}
+
+\begin{problem}{Branching Processes}
+Determine the extinction probabilities $q_1$, $q_2$, and $q_3$ for the following multi-type branching process, where $p(s)_{i,j,k}$ is the probability that a type $s$ individual has $i$ children of type 1, $j$ of type 2, and $k$ of type 3:
+\begin{itemize}
+    \item $p(1)_{1,0,4} = 0.5$, $p(1)_{0,1,3} = 0.25$, and $p(1)_{0,2,1} = 0.25$.
+    \item $p(2)_{0,0,3} = 0.2$, $p(2)_{0,1,2} = 0.4$, and $p(2)_{0,2,17645} = 0.4$.
+    \item $p(3)_{0,0,k} = \binom{16}{k} \left(\frac{1}{20}\right)^{k} \left(1 - \frac{1}{20}\right)^{16-k}$ for $0 \leq k \leq 16$.
+\end{itemize}
+\end{problem}
+
+\begin{problem}{Markov Chains}
+Consider an irreducible, finite Markov chain with transition matrix $P = P_w + P_b$, where $P_w$ and $P_b$ are sub-stochastic as in exercise 17 of the course. When we observe this Markov chain only after a white transition, we obtain a new Markov chain. 
+\begin{itemize}
+    \item[(a)] Show with an example that this new chain is not necessarily irreducible.
+    \item[(b)] Can this Markov chain contain 2 or more closed (communicating) classes?
+\end{itemize}
+\end{problem}
+
+\begin{problem}{Bianchi Model}
+Assume we want to determine the saturation throughput of the 802.11 DCF function in the case where we replace the binary exponential back-off algorithm with simple ALOHA (i.e., uniform back-off between 0 and $W$). How do we proceed (what do we need to adjust)? Provide an explicit expression for $p$, the probability that the transmission fails.
+\end{problem}
+
+\begin{problem}{Markov Chains}
+Assume that customers arrive at a payment machine according to a Poisson process with rate $\lambda$, and that they perform their payment in a constant time (e.g., 1 minute). Set up a Markov chain that allows us to determine the probability that a customer $i$ has customers in front of them when they arrive at the payment machine. [Hint: The probability that a customer $i$ has other customers in front of them upon arrival is equal to the probability that there are $i$ customers waiting when a customer has finished their payment (or, the queue length distribution at arrival times is equal to that at departure times).]
+\end{problem}
+
+\begin{problem}{Bernoulli and Poisson Processes}
+Suppose I probabilistically split a Poisson process into processes $A$ and $B$, and then again probabilistically split $A$ into $A_1$ and $A_2$. What is the average arrival rate of the superposition of $A_2$ and $B$, and is this also a Poisson process?
+\end{problem}
+
+\begin{problem}{Erlang B Formula}
+Suppose a telecom operator divides its customers into premium and regular customers and applies the rule that when there are $C_p$ or more of the $C$ lines occupied when initiating a phone call, only calls from premium customers are accepted. Adjust the Markov chain to model this behaviour; you do not need to derive the steady state expression. How do you now calculate the loss probabilities (formulas are not needed)?
+\end{problem}

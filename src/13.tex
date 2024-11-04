@@ -1,0 +1,71 @@
+\exam{2013}
+\begin{problem}{Bernoulli and Poisson process}
+Indicate whether the Poisson process is a suitable process to model the time epochs at which:
+\begin{itemize}
+    \item[(a)] orders are placed at \url{amazon.com};
+    \item[(b)] people buy online tickets for a rock concert;
+    \item[(c)] queries arrive at a DNS server;
+    \item[(d)] handovers occur in a wireless network.
+\end{itemize}
+\end{problem}
+\begin{solution}
+\begin{itemize}
+\item[(a)] Suitable. The arrival of orders can be modelled with a Poisson process for many practical applications, especially when looking at a sufficiently large time interval.
+\item[(b)] Not suitable. The purchase of tickets can vary significantly based on several factors such as the popularity of the concert, timing of sales, and marketing activities. This process will not have a constant average rate of ticket buying making it unsuitable for a Poisson process.
+\item[(c)] Suitable. DNS queries typically arrive randomly and independently, especially during regular operation when users access websites at varying times. Under normal conditions, they can be assumed to occur at a constant average rate.
+\item[(d)] Not suitable. Handovers can depend heavily on user mobility patterns, signal conditions, and network configurations. These factors often make handover events correlated rather than independent, with variations in rate under different conditions.
+\end{itemize}
+\end{solution}
+
+\begin{problem}{Bernoulli and Poisson process}
+Assume that the time it takes before a new computer gets infected by a virus is exponentially distributed and that about 20\% get infected within the first 6 months. What is the probability that a new computer remains uninfected during the first 3 years (assuming all computers are equally vulnerable)?
+\end{problem}
+
+\begin{solution}
+The exponential distribution function is:
+\begin{align*}
+    f(t) = \lambda e^{-\lambda t}
+\end{align*}
+The probability that a computer is infected by time ( t ), is given by:
+\begin{align*}
+   P(T \leq t) = 1 - e^{-\lambda t} 
+\end{align*}
+The probability that a computer remains uninfected until time ( t ) is:
+\begin{align*}
+    P(T > t) = e^{-\lambda t}
+\end{align*}
+
+We know from the problem statement that about 20\% of computers get infected within the first 6 months, implying:
+\begin{align*}
+P(T \leq 0.5) = 0.20
+\end{align*}
+This can be written as:
+\begin{align*}
+    &1 - e^{-\lambda \cdot 0.5} = 0.20\\
+    &\Longleftrightarrow 
+    e^{-\lambda \cdot 0.5} = 0.80\\
+    &\Longleftrightarrow  -\lambda \cdot 0.5  = \ln(0.80)
+    \\ &\Longleftrightarrow \lambda = -\frac{2 \ln(0.80)}{1}
+\end{align*}
+with $\ln(0.80) \approx -0.2231$ 
+This gives:
+\begin{align*}
+    \lambda \approx -\frac{2 \cdot (-0.2231)}{1} \approx 0.4462
+\end{align*}
+
+Now that we have the value of ( $\lambda$ ), we can find the probability that a new computer remains uninfected during the first 3 years (which is equal to ( t = 3 ) years):
+Using the survival function:
+\begin{align*}
+    P(T > 3) = e^{-\lambda \cdot 3}
+\end{align*}
+
+Substituting the value of ( $\lambda$ ):
+\begin{align*}
+  P(T > 3) = e^{-0.4462 \cdot 3} = e^{-1.3386}  
+\end{align*}
+Calculating ( $e^{-1.3386}$ ):
+\begin{align*}
+    e^{-1.3386} \approx 0.2610
+\end{align*}
+This gives us a probability that a new computer remains uninfected during the first 3 years is approximately 26.1\%.
+\end{solution}
