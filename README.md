@@ -1,6 +1,7 @@
 # Introduction to Performance Modelling
 
 This repository holds a collection of solutions to past exams. Our goal is to make it easy for everyone to access clear, well-organized solutions. Any contribution is welcome—whether it’s adding missing solutions, fixing typos, adding illustrations, improving formatting, or any other helpful tweaks.
+If I made a mistake *anywhere*, please open an issue!
 
 ## Compiling the PDF
 If you’d like to compile the PDF yourself, you can find setup instructions at [LaTeX Project](https://www.latex-project.org/get/).
@@ -17,6 +18,7 @@ For convenience, the PDF is also included in the repository, so you can view the
 
 - **Create a Pull Request**: Make your changes, and if possible, select a reviewer for feedback.
   - Create an issue for the problem you are working on from the list of problems (Each exam has a large issue, pressing the circle while hovering over a list item creates a new issue for that problem). Note that there are helpful labels available to you, use them where possible.
+  - If you are not familiar with GitHub you can always send me a message and I'll try to guide you through the process.
 - **Send Your Solution**: If you’re not comfortable with LaTeX or can’t add the solution directly, you can email me a scan or picture of your solution. I’ll try to add it as soon as possible.
 
 ## Style Guide
