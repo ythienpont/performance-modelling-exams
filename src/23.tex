@@ -20,6 +20,93 @@ Given a DTMC with state space S such that state i = 1 has period $d_1$ = 3, stat
 Assume we flip a coin infinitely often. How many coin flips do we need on average until we flipped the sequence HTH (heads-tails-heads)? Explain your answer.
 \end{problem}
 
+\begin{solution}
+  We can model this problem as a DTMC where each transition has a probability of $\frac{1}{2}$. Each state represents a step in the sequence. We now calculate the mean hitting time for $A = \{3\}$, where state 3 represents the successful observation of "HTH."
+
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{img/23.2.png}
+    \end{center}
+    \caption{DTMC modelling coin flips to reach an HTH sequence}
+  \end{figure}
+
+  \textbf{Remember:} Let $\{X_n, n \geq 0\}$ be a Markov chain characterized by transition matrix $P$, and let $A \subseteq S$ be a subset of states. Then, the mean hitting times $k^A_i$ of $A$ are the smallest non-negative solution to:
+  \[
+    x_i =
+    \begin{cases}
+      0, & i \in A, \\
+      1 + \sum_{j \notin A} p_{i,j} x_j, & i \notin A.
+    \end{cases}
+  \]
+
+  Define \( x_i \) as the mean hitting time (expected number of flips) to reach state 3 from state \( i \).
+
+  \begin{itemize}
+    \item $x_3 = 0$ since $3 \in A$, which is our target state.
+    \item For $x_0$ (starting from the initial state):
+      \[
+        x_0 = 1 + \frac{1}{2}x_1 + \frac{1}{2}x_0
+      \]
+      Rearranging, we get:
+      \[
+        \frac{1}{2}x_0 = 1 + \frac{1}{2}x_1
+      \]
+      \[
+        x_0 = 2 + x_1
+      \]
+
+    \item For $x_1$ (starting from the state where "H" is observed):
+      \[
+        x_1 = 1 + \frac{1}{2}x_2 + \frac{1}{2}x_1
+      \]
+      Rearranging, we get:
+      \[
+        \frac{1}{2}x_1 = 1 + \frac{1}{2}x_2
+      \]
+      \[
+        x_1 = 2 + x_2
+      \]
+
+    \item For $x_2$ (starting from the state where "HT" is observed):
+      \[
+        x_2 = 1 + \frac{1}{2}x_3 + \frac{1}{2}x_0
+      \]
+      Simplifying, since \( x_3 = 0 \):
+      \[
+        x_2 = 1 + \frac{1}{2}x_0
+      \]
+  \end{itemize}
+
+  We now solve this system of equations step-by-step:
+
+  \begin{enumerate}
+    \item Substitute \( x_1 = 2 + x_2 \) into \( x_0 = 2 + x_1 \):
+      \[
+        x_0 = 4 + x_2
+      \]
+    \item Substitute \( x_0 = 4 + x_2 \) into \( x_2 = 1 + \frac{1}{2}x_0 \)
+      \[
+        x_2 = 1 + \frac{1}{2}\left( 4 + x_2 \right)
+      \]
+      \[
+        \frac{1}{2}x_2 = 3
+      \]
+      \[
+        x_2 = 6
+      \]
+    \item Substitute \( x_2 = 6 \) into \( x_0 = 4 + x_2 \):
+      \[
+        x_0 = 4 + 6 = 10
+      \]
+  \end{enumerate}
+
+  Thus, the mean hitting time to reach the sequence "HTH" (state 3) from the starting state (state 0) is:
+  \[
+  \boxed{x_0 = 10}
+  \]
+  Therefore, on average, it takes 10 coin flips to observe the sequence "HTH" for the first time.
+\end{solution}
+
 \begin{problem}{Continuous-Time Markov Chains}
 Consider an infinite state continuous-time Markov chain (CTMC) with state space $\{0, 1, 2, \ldots\}$ and rate matrix $Q$, such that for $i \neq j$ we have:
 

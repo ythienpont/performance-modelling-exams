@@ -1,0 +1,13 @@
+digraph MarkovChain {
+    rankdir=LR;
+    node [shape=circle];
+    
+    S0 -> S0 [label="T, 0.5"];
+    S0 -> S1 [label="H, 0.5"];
+    S1 -> S1 [label="H, 0.5"];
+    S1 -> S2 [label="T, 0.5"];
+    S2 -> S0 [label="T, 0.5"];
+    S2 -> S3 [label="H, 0.5"];
+    
+    S3 [shape=doublecircle]; // absorbing state
+}
