@@ -16,6 +16,31 @@ Furthermore, looking at the superposition of the two arrival processes, we know 
 Given a DTMC with state space S such that state i = 1 has period $d_1$ = 3, state i = 2 has period $d_2$ = 5 and there are at least 3 open communicating classes. What is the smallest possible value for $| S |$  ? Explain your answer. Give an example (by defining P) of a DTMC such that $| S |$ is minimized
 \end{problem}
 
+\begin{solution}
+  The smallest size for a communicating class $C_i$ with period $d_i=k$ has $|C_i|=k$. This means we need at least two cycles $C_1$ and $C_2$ with size 3 and 5 respectively, since a state can't be part of multiple communicating classes. Adding an edge from $C_1$ to $C_2$ (or vice versa) creates our first open communicating class. The smallest communicating class consists of a single state, so we'll have to add two additional states, resulting in:
+  \[
+  \boxed{| S | = 10}
+  \]
+\end{solution}
+
+with 
+
+\[
+P =
+\begin{bmatrix}
+  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0.5 & 0 & 0 & 0.5 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
+\end{bmatrix}
+\]
+
 \begin{problem}{Discrete-Time Markov Chains}
 Assume we flip a coin infinitely often. How many coin flips do we need on average until we flipped the sequence HTH (heads-tails-heads)? Explain your answer.
 \end{problem}
