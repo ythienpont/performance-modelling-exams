@@ -72,6 +72,22 @@ in terms of the entries of \( P \) and \( \pi \). Define a DTMC with transition 
 Give an example of an irreducible, transient DTMC with period 2. Explain why your example has these properties.
 \end{problem}
 
+\begin{solution}
+	Define the Markov chain with $S=\{1,2\}$ and a transition matrix $P$:
+	\[
+		P = \begin{pmatrix}
+		0 & 1 \\
+		1 & 0 \\
+		\end{pmatrix}
+	\]
+
+	\begin{itemize}
+		\item \textbf{Irreducible}: Each state can be reached from the other. Single communicating class.
+		\item \textbf{Period of 2}: For each state, any (simple) path returning to it involves exactly two steps. (Every timestep we visit state $i$ after starting in $i$ is divisible by two).
+		\item \textbf{Transience}: The chain never returns to the same state within one step.
+	\end{itemize}
+\end{solution}
+
 \begin{problem}{PASTA}
 Consider a queueing system with Poisson arrivals, where the service time of customer \( n \) depends on the inter-arrival time between customer \( n - 1 \) and \( n \). Can we apply the PASTA property for this queueing system? Explain your answer.
 \end{problem}
