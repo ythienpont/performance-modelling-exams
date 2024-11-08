@@ -39,6 +39,35 @@ Consider an irreducible, positive recurrent DTMC. Let \( P \) be its transition 
 in terms of the entries of \( P \) and \( \pi \). Define a DTMC with transition probability matrix \( \tilde{P} \) such that entry \( (i, j) \) of \( \tilde{P} \) equals \( \tilde{p}_{i,j} \). Is this DTMC positive recurrent? If so, what can you say about its stationary distribution?
 \end{problem}
 
+\begin{solution}
+  Using Bayes' theorem we can write $\tilde{p}_{i,j}$ as
+  \[
+    \tilde{p}_{i,j} = \lim_{n \to \infty} P[X_n = j | X_{n+1} = i] = \lim_{n \to \infty} \frac{P[X_{n+1}=i | X_n = j] \cdot P[X_n=j]}{P[X_{n+1}=i]}
+  \]
+
+  Since the process is stationary, $P[X_n=j] = \pi_j$ and $P[X_{n+1}=i] = \pi_i$. Also, $P[X_{n+1}=i | X_n = j] = P_{j,i}$, where $P_{j,i}$ is the transition probability from $j$ to $i$. Thus,
+  \[
+    \tilde{p}_{i,j} = \frac{P_{j,i}\cdot \pi_j}{\pi_i}
+  \]
+
+  We can now define the transition matrix $\tilde{P}$ where 
+  \[
+    \tilde{P}_{i,j}=\tilde{p}_{i,j} = \frac{P_{j,i}\cdot \pi_j}{\pi_i}
+  \]
+
+  If the original DTMC was irreducible, the reversed DTMC based on it's stationary distribution will also be irreducible, therefore positive recurrent.
+  We know that $\tilde{\pi}$ must satisfy $\tilde{\pi}\tilde{P} = \tilde{\pi}$. For a fixed $j$, we find
+
+  \[
+    \tilde{\pi}_j = \sum_i\pi_i\cdot\tilde{p}_{i,j} = \sum_i\pi_i\frac{p_{j,i}\cdot \pi_j}{\pi_i}=\sum_j\pi_j\cdot  p_{j,i}= \pi_j\sum_ip_{j,i} = \pi_j \cdot 1 = \pi_j
+  \]
+
+  Thus,
+  \[
+    \boxed{\tilde{\pi} = \pi}
+  \]
+\end{solution}
+
 \begin{problem}{Markov Chains}
 Give an example of an irreducible, transient DTMC with period 2. Explain why your example has these properties.
 \end{problem}
