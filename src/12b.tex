@@ -7,13 +7,6 @@ Indicate whether either the Bernoulli or Poisson process is a suitable process t
 \end{itemize}
 \end{problem}
 
-\begin{solution}
-\begin{itemize}
-\item[(a)] Search queries happen randomly and frequently over time. They are generally independent of one another, without a predictable interval, which makes a Poisson process suitable here. The Poisson process effectively models the random occurrences of events (search queries) over continuous time intervals.
-\item[(b)] Rain on a particular day is more accurately a binary event (rain: yes or no) and can be observed at fixed daily intervals. This makes a Bernoulli process suitable if we consider each day independently and assign a probability p to the occurrence of rain. We can view each day as an independent trial with a probability of rain, which aligns with the structure of a Bernoulli process.
-\end{itemize}
-\end{solution}
-
 \begin{problem}{Bernoulli and Poisson process}
 Consider a (RAID) system consisting of 80 hard
 disk drives. Assume that the life time of a disk has an exponential distribution with a
@@ -21,15 +14,3 @@ mean of 1200 days. If a disk fails it is immediately replaced by another new dis
 average how many disks need replacement per month? Explain your answer using the
 properties of the exponential distribution and the Poisson process.
 \end{problem}
-
-\begin{solution}
-Disk failures can be modelled as a Poisson process, where failures are independent events occurring at a constant average rate. The Poisson's mean rate can be calculated as follows:
-\begin{align*}
-    \lambda &= \frac{1}{mean}\\
-            &= \frac{1}{1200}
-\end{align*}
-The total failure rate (for 80 disks) per month (30) is:
-\begin{align*}
-    80 \cdot 1200 \cdot 30 \approx 2
-\end{align*}
-\end{solution}

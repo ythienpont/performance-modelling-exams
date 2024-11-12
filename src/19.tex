@@ -3,23 +3,6 @@
 Consider a Poisson process with rate $ \lambda$. Assume $n$ arrivals occurred in between time $0$ and $t$. Give an expression for the probability that no arrivals occur between time $t/3$ and $2t$? Explain how you obtained your expression.
 \end{problem}
 
-\begin{solution}
-We first calculate the interval,we are interested in:
-\begin{align*}
-    <t>&=2t-\frac{1}{3}t\\
-    &= \frac{5}{3}t
-\end{align*}
-The probability of having no arrivals in a specific interval can be written as:
-\begin{align*}
-    P(N(t)=k)&= \frac{\lambda <t> e^{-\lambda <t>}}{k!}
-\end{align*}
-In this case we have k=0 and $<t>=\frac{5}{3}$. This gives us the following expression:
-\begin{align*}
-   P(N(t)=0) &= \left (\frac{\lambda \frac{5}{3}t}{0!}e^{-\lambda 5/3 t}\right )\\
-   &= e^{5/3 t \lambda }
-\end{align*}
-\end{solution}
-
 \begin{problem}{Discrete Time Markov Chains}
 What is the least number of non-zero entries in the transition probability matrix $P$ of a discrete time irreducible aperiodic Markov chain with $n > 2$ states? Does your answer change if we demand that the chain has period 2? Explain your answers.
 \end{problem}

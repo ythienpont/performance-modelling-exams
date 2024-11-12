@@ -2,25 +2,6 @@
 \begin{problem}{Spam Mail}
  Suppose spam mail arrives in your mailbox as a Poisson process with rate $\lambda_s$, regular mail arrives as a Poisson process with rate $\lambda_r$ and both processes are independent. (1) What is the mean time between any two mails? (2) What is the probability that exactly 5 out of 10 consecutive mails are spam mails?
  \end{problem}
- \begin{solution}
- (1) Since spam and regular mails arrive as two independent Poisson processes, with rates $\lambda_s$ and $\lambda_r$ respectively, the combined arrival process (any type of mail) is also a Poisson process with rate:
- \begin{align*}
-     \lambda= \lambda_s +\lambda_r
- \end{align*}
- This gives us a mean inter-arrival time of:
- \begin{align*}
-    \frac{1}{\lambda}= \frac{1}{\lambda_s +\lambda_r}
- \end{align*}
- \\
- (2) The probability that any given mail is spam is given with the following distribution:
- \begin{align*}
-     p_{spam}=\frac{\lambda_s}{\lambda_s +\lambda_r}
- \end{align*}
- Using binomial distribution we can deduce given=10 (total mails) and a probability $p_spam$ of being spam, the probability that exactly k=5 of these mails are spam is:
-\begin{align*}
-    p(5,10)&=\binom{10}{5} \left (\frac{\lambda_s}{\lambda_s +\lambda_5}\right )^5 \left ( 1- \frac{\lambda_s}{\lambda_s +\lambda_5} \right ) ^{10}
-\end{align*}
-\end{solution}
 
 \begin{problem}{Discrete Time Markov Chains} 
 Let \( d_i \) be the period of state \( i \) in a DTMC. Give an example of a DTMC with 7 states (by defining \( P \)) such that \( (d_1, d_2, \dots, d_7) = (3, 3, 2, 1, 3, 2, 3) \) and exactly 2 states are recurrent. Explain your answer.

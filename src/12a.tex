@@ -9,15 +9,6 @@ Indicate whether the Poisson process is a suitable process to model:
 \end{itemize}
 \end{problem}
 
-\begin{solution}
-\begin{itemize}
-\item[(a)] Not suitable. The handover times are often dependent on different factors such as a user going from one place to the other or network load. This process can therefore not be modelled with a Poisson process.
-\item[(b)] Not suitable. A single TCP source transmits packets according to its congestion control and flow control mechanisms. This means that the packet transmission could be affected by network conditions, previous congestion, and other factors, which can make the time between packet transmissions variable and dependent on these conditions
-\item[(c)] Suitable. In this case, while the individual packet transmissions of TCP sources may not follow a Poisson process, when considering a large number of sources working under varying loads, the aggregated packet arrivals can often approximate a Poisson process, especially if the number of sources is large and they are independently sending packets.
-\item[(d)] Suitable. Email arrivals can often be viewed as independent events, and while they may vary throughout the day, the overall arrival rate can be relatively constant over long periods (in a general sense). Factors like promotions or all at once notifications can cause bursts, but on average, it can often be approximated as arriving at a constant average rate.
-\end{itemize}
-\end{solution}
-
 \begin{problem}{Branching Processes}
 Give an example of a single-type branching process such that
 the extinction probability is equal to $p$, for any $0 < p < 1$.
