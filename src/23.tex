@@ -3,6 +3,16 @@
 Consider a Poisson process with rate $\lambda$. Let $T_n$ be the time of the $n$-th arrival. Consider a second arrival process and denote $Z_n$ as the time of the $n$-th arrival of this second arrival process. Assume $Z_n$ = c$T_n$ for some constant c $>$ 0. What can you say about this second arrival process? Prove your answer. What do we know about the superposition of these two arrival processes?
 \end{problem}
 
+\begin{solution} 
+The inter-arrival time of the first process ($T_n - T_{n-1})$ with mean $\frac{1}{\lambda}$ is independent of the second process $ c.(T_n - T_{n-1})$ , with mean $\frac{c}{\lambda}$. We can deduce that the second process is a Poisson process with a scaled rate of $\frac{\lambda}{c}$. 
+
+Furthermore, looking at the superposition of the two arrival processes, we know that the combination of two Poisson processes is just another Poisson process. In this case a Poisson process with arrival rate:
+\begin{align*}
+    \lambda +\frac{\lambda}{c}= \lambda\left (1+\frac{1}{c}  \right )
+\end{align*}
+\end{solution}
+
+
 \begin{problem}{Discrete-Time Markov Chains}
 Given a DTMC with state space S such that state i = 1 has period $d_1$ = 3, state i = 2 has period $d_2$ = 5 and there are at least 3 open communicating classes. What is the smallest possible value for $| S |$  ? Explain your answer. Give an example (by defining P) of a DTMC such that $| S |$ is minimized
 \end{problem}
