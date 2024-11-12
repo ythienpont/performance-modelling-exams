@@ -8,6 +8,40 @@ $\lambda_1$ and $\lambda_2$ . Let $N_{t,i}$ be the number of arrivals of process
 \end{align*}
 \end{problem}
 
+\begin{solution}
+We look at the first probability:
+\begin{align*}
+    P(N_{t,1}&= N_{t,2}+k)\\
+    &= \sum_{n=0}^{\infty} P(N_{t,1}=n+k,N_{t,2}=n)
+\end{align*}
+Since we have that $N_{t,1}$ and $N_{t,2}$ are independent , we can do the following:
+\begin{align*}
+   P(N_{t,1}&=N_{t,2}+k)\\
+   &= \sum_{n=0}^\infty P(N_{t,1}= n+k).P(N_{t,2}=n)
+   \\&=\sum_{n=0}^\infty \left ( \frac{(\lambda_1 t)^{n+k}}{(n+k)!} e^{-\lambda_1 t} \right ). \left ( \frac{(\lambda_2 t)^n}{n!} e^{-\lambda_2 t}\right )
+\end{align*}
+Factoring out $e^{(\lambda_1+\lambda_2) t}$, we get:
+\begin{align*}
+     P(N_{t,1}&=N_{t,2}+k)\\
+     &=e^{-(\lambda_1+\lambda_2) t}\sum_{n=0}^\infty \left ( \frac{(\lambda_1 t)^{n+k}}{(n+k)!}  \right ). \left ( \frac{(\lambda_2 t)^n}{n!} \right )
+\end{align*}
+For clarity , we can introduce the variable m to make the equality more clear with:
+\begin{align*}
+    &m=n+k\\
+    &n=m-k
+\end{align*}
+This transforms the equation to:
+\begin{align*}
+       P(N_{t,1}&=N_{t,2}+k)\\
+     &=e^{-(\lambda_1+\lambda_2) t}\sum_{m=k}^\infty \left ( \frac{(\lambda_1 t)^{m}}{(m)!}  \right ). \left ( \frac{(\lambda_2 t)^{m-k}}{(m-k)!} \right )
+\end{align*}
+This makes it clearer to see the initial equality of : 
+\begin{align*}
+    \lambda_2^k P(N_{t,1} = N_{t,2} + k) 
+    &=\lambda_1^k P(N _{t,2} = N_{t,1} + k)
+\end{align*}
+\end{solution}
+
 \begin{problem}{Markov Chains}
 Give an example of a DTMC with 6 states, where some states have period 2 and others have period 3, while not all states are recurrent. Explain your answer. What is the maximum number of non-zero entries in \( P \) for such a chain? Explain.
 \end{problem}
