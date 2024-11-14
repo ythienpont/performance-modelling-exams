@@ -16,8 +16,8 @@ For convenience, the PDF is also included in the repository, so you can view the
 
 ## Submitting Your Contribution
 
-- **Create a Pull Request**: Make your changes, and if possible, select a reviewer for feedback.
-  - Create an issue for the problem you are working on from the list of problems (Each exam has a large issue, pressing the circle while hovering over a list item creates a new issue for that problem). Note that there are helpful labels available to you, use them where possible.
+- **Create a Pull Request**: Make your changes, and if possible, select a reviewer for feedback. (Fork repository or separate branch as collaborator) PR should be called *year*-*nr.*
+  - Create an issue for the problem you are working on from the list of problems, this is a good indication to see if an exercise is currently being worked on. (Each exam has a large issue, pressing the circle while hovering over a list item creates a new issue for that problem). Note that there are helpful labels available to you, use them where possible.
   - If you are not familiar with GitHub you can always send me a message and I'll try to guide you through the process.
 - **Send Your Solution**: If you’re not comfortable with LaTeX or can’t add the solution directly, you can email me a scan or picture of your solution. I’ll try to add it as soon as possible.
 
