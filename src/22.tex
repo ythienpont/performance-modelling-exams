@@ -71,7 +71,28 @@ in terms of the entries of \( P \) and \( \pi \). Define a DTMC with transition 
 \begin{problem}{Markov Chains}
 Give an example of an irreducible, transient DTMC with period 2. Explain why your example has these properties.
 \end{problem}
-
+\begin{solution}
+    A simple example would be :
+    \begin{align*}
+        &S=\{0,1,2\}
+    \end{align*}
+    With transition matrix:
+    P=
+    \[
+        P = \begin{pmatrix}
+                0 & 1/2 & 1/2 \\
+                1/2 & 0 &1/2  \\
+                1/2 & 1/2 & 0
+        \end{pmatrix}
+    \]
+    \underline{irreducable}\\
+    Every state can be reached by any other state.\\
+    \underline{transient}\\
+    There is a non-zero probability of never returning to a state once leaving it.\\
+    \\
+    \underline{period 2}\\
+    Every state can return to itself with a period of 2.
+\end{solution}
 \begin{problem}{PASTA}
 Consider a queueing system with Poisson arrivals, where the service time of customer \( n \) depends on the inter-arrival time between customer \( n - 1 \) and \( n \). Can we apply the PASTA property for this queueing system? Explain your answer.
 \end{problem}
