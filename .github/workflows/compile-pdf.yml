@@ -1,4 +1,4 @@
-name: Compile LaTeX and Deploy PDF
+name: Build and Deploy LaTeX Document
 
 on:
   push:
@@ -7,31 +7,21 @@ on:
 
 jobs:
   build:
-    name: Build and Deploy PDF
     runs-on: ubuntu-latest
-
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Set up LaTeX environment
-      - name: Set up TeX Live
-        uses: dante-ev/latex-action@v2
-        with:
-          packages: >-
-            latexmk
-            texlive-latex-extra
-            texlive-fonts-recommended
+        uses: actions/checkout@v4
 
       # Compile the LaTeX document
-      - name: Compile LaTeX to PDF
-        run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
 
       # Deploy the PDF to GitHub Pages
       - name: Deploy PDF to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Location of the compiled PDF
-          destination_dir: pdfs/  # Optional: Store PDFs in a subdirectory
+          publish_dir: . # Replace with the folder containing your compiled PDF
