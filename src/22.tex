@@ -76,6 +76,10 @@ Give an example of an irreducible, transient DTMC with period 2. Explain why you
 Consider a queueing system with Poisson arrivals, where the service time of customer \( n \) depends on the inter-arrival time between customer \( n - 1 \) and \( n \). Can we apply the PASTA property for this queueing system? Explain your answer.
 \end{problem}
 
+\begin{solution}
+	For PASTA to apply, the system should be memoryless, i.e. the system has no information on the arrival times of future arrivals. Since the independence property is violated, we can \textbf{not} apply the PASTA property.
+\end{solution}
+
 \begin{problem}{Applications}
 Consider a queueing network consisting of 2 queues (not necessarily M/M/1 queues). Type 1 jobs arrive at rate \( \lambda_1 \) and first visit queue 1 followed by queue 2. Type 2 jobs arrive at rate \( \lambda_2 \) and visit queue 1 only, while type 3 jobs arrive at rate \( \lambda_3 \) and only visit queue 2. Assume that the mean time that a random job spends in the queueing network equals 5, the mean time that a random type 1 or type 2 job spends in queue 1 is 3 and that the mean time that a random type 1 or 3 job spends in queue 2 is 4. Determine the arrival rates \( \lambda_1, \lambda_2 \) and \( \lambda_3 \) given that \( \lambda_1 = \lambda_2 \) and \( \lambda = \lambda_1 + \lambda_2 + \lambda_3 = 1 \). Does your answer change if type 1 jobs visit both queues in the opposite order? Explain.
 \end{problem}
