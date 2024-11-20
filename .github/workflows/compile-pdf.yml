@@ -22,9 +22,24 @@ jobs:
           root_file: main.tex
           work_in_root_file_dir: true
 
-      # Deploy the compiled PDF to GitHub Pages
-      - name: Deploy PDF to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      # Checkout gh-pages branch
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          ref: gh-pages
+          path: gh-pages
+
+      # Copy the compiled PDF to the gh-pages branch
+      - name: Copy compiled PDF to gh-pages
+        run: |
+          cp main.pdf gh-pages/
+
+      # Commit and push the changes to gh-pages
+      - name: Commit and push PDF to gh-pages
+        run: |
+          cd gh-pages
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add main.pdf
+          git commit -m "Deploy compiled PDF"
+          git push
