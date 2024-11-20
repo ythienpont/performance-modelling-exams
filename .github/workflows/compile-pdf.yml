@@ -18,10 +18,12 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
+          work_in_root_file_dir: true
 
-      # Deploy the PDF to GitHub Pages
+      # Deploy the compiled PDF to GitHub Pages
       - name: Deploy PDF to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: . # Replace with the folder containing your compiled PDF
+          publish_dir: ${{ github.workspace }} # Points to the temporary GitHub Actions environment
+          destination_dir: . # Leave root directory in gh-pages
