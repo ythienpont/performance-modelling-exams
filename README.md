@@ -27,7 +27,7 @@ To keep things straightforward and accessible, here’s a flexible style guide. 
 
 - **No Compile Errors**: Your code should compile without errors, and ideally without warnings. Try to fix issues like “underfull hbox” before submitting a pull request.
 - **Proper English**: Clear and correct English is preferred, so please check spelling and grammar before submitting.
-- **Line Breaks**: Please do not overuse linebreaks '\\'. You should (almost) never use these in regular text.
+- **Line Breaks**: Please do not overuse linebreaks '\\\\'. You should (almost) never use these in regular text.
 - **Avoid Sectioning Commands**: Please don’t use `\section`, `\subsection`, or `\subsubsection` environments, as they interfere with the table of contents. If you need a custom environment, add it to the preamble.
 - **Lists and Sub-Questions**: Use `itemize` and `enumerate` environments wherever possible. For questions with sub-parts, you can use `\item[(a)]` to match Benny's formatting.
 - **Math Mode**: Always use math mode for variables like `n`, `i`, etc., to keep formatting consistent.
