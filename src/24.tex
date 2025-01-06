@@ -1,0 +1,45 @@
+\exam{2024}
+\begin{problem}{Poisson Process}
+Suppose we construct an arrival process from a Poisson process by shifting each arrival by $\Delta_i$ to the right with probability $p_i$, for $i = 1, \ldots, 10$. Why is the constructed arrival process a Poisson process from time $t = \max_i \Delta_i$ onwards?
+\end{problem}
+
+\begin{problem}{Discrete-Time Markov Chains}
+Give an example of a Markov chain where all the states have period 2 with at least one transient state and at least one recurrent state.
+\end{problem}
+
+\begin{solution}
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[width=0.5\textwidth]{img/24.2.png}
+    \end{center}
+  \end{figure}
+\end{solution}
+
+\begin{problem}{Discrete-Time Markov Chains}
+Consider a single roll of 5 dice. Set up a DTMC that allows you to compute the probability of having a full house, meaning the result of the roll is three dice with one number and two dice with another number (5 identical numbers do not count). Try to minimize the number of states in your DTMC. There is no need to compute the actual probability.
+\end{problem}
+\begin{problem}{Discrete-Time Markov Chains}
+  Let $(X_n)_{n\geq 0}$ be an irreducible aperiodic DTMC. Let the $(Y_n)_{n\geq0}$ be the DTMC obtained by censoring out state 0 of $(X_n)_{n\geq 0}$. In other words the DTMC $(Y_n)_{n\geq0}$ is identical to $(X_n)_{n\geq0}$ except that the points in time where state 0 is visited are skipped. Is $(Y_n)_{n\geq0}$ necessarily aperiodic? Prove this or give a counter example.
+\end{problem}
+\begin{solution}
+  When removing state 0, we find a periodic DTMC.
+
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[width=0.3\textwidth]{img/24.4.png}
+    \end{center}
+  \end{figure}
+  
+\end{solution}
+
+\begin{problem}{Continuous-Time Markov Chains}
+Give an example of a positive recurrent CTMC $(X_t)_{t\geq 0}$ with an infinite number of states such that $\lim_{i\rightarrow\infty} D_i = 0$, where $D_i$ is the drift of the embedded Markov chain $(Y_n)_{n\geq 0}$ in state $i$, that is, $D_i = E[Y_{n+1} - Y_n|Y_n = i]$.
+\end{problem}
+
+\begin{problem}{Applications}
+Consider an M/M/C queue. Suppose we increase the arrival rate and the rate of each of the $C$ servers by a factor $k$. Does this affect the queue length distribution? Explain. What about the mean response time? [Hint: You can answer this last question using a simple formula].
+\end{problem}
+
+\begin{problem}{Applications}
+  Consider a Jackson network in which each of the $M$ queues is replaced by an infinite number of servers, where the speed of a single server is $\mu_i$ for queue $i$. Assume the routing is such that $(I - P )^{-1}$ exists. Consider the CTMC that keeps track of the number of busy servers in each queue. Derive the global balance equations for this CTMC. Clearly explain the different terms appearing in your equations. What is the condition needed for the Markov chain to be positive recurrent? Give an expression for the stationary distribution (without actually proving it)
+\end{problem}
