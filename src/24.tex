@@ -39,6 +39,25 @@ Give an example of a positive recurrent CTMC $(X_t)_{t\geq 0}$ with an infinite 
 \begin{problem}{Applications}
 Consider an M/M/C queue. Suppose we increase the arrival rate and the rate of each of the $C$ servers by a factor $k$. Does this affect the queue length distribution? Explain. What about the mean response time? [Hint: You can answer this last question using a simple formula].
 \end{problem}
+\begin{solution}
+The queue length distribution in an M/M/C system depends on the traffic intensity $\rho = \frac{\lambda}{C\mu}$. If both the arrival rate $\lambda$ and the service rate $\mu$ are scaled by a factor $k$, the new traffic intensity becomes:
+
+\[
+\rho' = \frac{k\lambda}{C \cdot k\mu} = \rho.
+\]
+
+Since $\rho$ remains unchanged, the queue length distribution is unaffected.
+
+For the mean response time $W$, which can be expressed as the sum of the mean waiting time in the queue and the mean service time:
+
+\[
+W = W_q + \frac{1}{\mu},
+\]
+
+scaling $\mu$ by a factor $k$ reduces the mean service time to $\frac{1}{k\mu}$. Therefore, while the waiting time $W_q$ remains unchanged (as it depends on $\rho$), the mean response time decreases.
+
+Intuitively, this result makes sense: the system processes jobs faster due to the higher service rate, but the balance of arrivals and departures remains the same, preserving the queue's overall behavior.
+\end{solution}
 
 \begin{problem}{Applications}
   Consider a Jackson network in which each of the $M$ queues is replaced by an infinite number of servers, where the speed of a single server is $\mu_i$ for queue $i$. Assume the routing is such that $(I - P )^{-1}$ exists. Consider the CTMC that keeps track of the number of busy servers in each queue. Derive the global balance equations for this CTMC. Clearly explain the different terms appearing in your equations. What is the condition needed for the Markov chain to be positive recurrent? Give an expression for the stationary distribution (without actually proving it)
