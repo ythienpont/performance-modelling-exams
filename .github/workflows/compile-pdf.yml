@@ -1,4 +1,4 @@
-name: Compile LaTeX and Deploy PDF
+name: Build and Deploy LaTeX Document
 
 on:
   push:
@@ -7,31 +7,44 @@ on:
 
 jobs:
   build:
-    name: Build and Deploy PDF
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
-
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Set up LaTeX environment
-      - name: Set up TeX Live
-        uses: dante-ev/latex-action@v2
-        with:
-          packages: >-
-            latexmk
-            texlive-latex-extra
-            texlive-fonts-recommended
+        uses: actions/checkout@v4
 
       # Compile the LaTeX document
-      - name: Compile LaTeX to PDF
-        run: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
-
-      # Deploy the PDF to GitHub Pages
-      - name: Deploy PDF to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Location of the compiled PDF
-          destination_dir: pdfs/  # Optional: Store PDFs in a subdirectory
+          root_file: main.tex
+          work_in_root_file_dir: true
+
+      # Checkout gh-pages branch
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      # Copy the compiled PDF to the gh-pages branch
+      - name: Copy compiled PDF to gh-pages
+        run: |
+          cp main.pdf gh-pages/
+          
+      # Remove the PDF from the main branch
+      - name: Remove main.pdf from main branch
+        run: |
+          rm main.pdf
+
+      # Commit and push the changes to gh-pages
+      - name: Commit and push PDF to gh-pages
+        run: |
+          cd gh-pages
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -f main.pdf
+          git commit -m "Deploy compiled PDF"
+          git push

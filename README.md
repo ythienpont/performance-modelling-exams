@@ -3,6 +3,9 @@
 This repository holds a collection of solutions to past exams. Our goal is to make it easy for everyone to access clear, well-organized solutions. Any contribution is welcome—whether it’s adding missing solutions, fixing typos, adding illustrations, improving formatting, or any other helpful tweaks.
 If I made a mistake *anywhere*, please open an issue!
 
+## Pre-Compiled PDF
+For convenience, the PDF is available [here](https://ythienpont.github.io/performance-modelling-exams/main.pdf).
+
 ## Compiling the PDF
 If you’d like to compile the PDF yourself, you can find setup instructions at [LaTeX Project](https://www.latex-project.org/get/).
 On Linux it's as easy as
@@ -10,9 +13,6 @@ On Linux it's as easy as
 pdflatex main.tex
 ```
 Updating the table of contents requires at least two compilations to update the .aux files.
-
-
-For convenience, the PDF is also included in the repository, so you can view the solutions even if you don’t plan to set up LaTeX.
 
 ## Submitting Your Contribution
 
@@ -27,7 +27,7 @@ To keep things straightforward and accessible, here’s a flexible style guide. 
 
 - **No Compile Errors**: Your code should compile without errors, and ideally without warnings. Try to fix issues like “underfull hbox” before submitting a pull request.
 - **Proper English**: Clear and correct English is preferred, so please check spelling and grammar before submitting.
-- **Line Breaks**: Please do not overuse linebreaks '\\'. You should (almost) never use these in regular text.
+- **Line Breaks**: Please do not overuse linebreaks '\\\\'. You should (almost) never use these in regular text.
 - **Avoid Sectioning Commands**: Please don’t use `\section`, `\subsection`, or `\subsubsection` environments, as they interfere with the table of contents. If you need a custom environment, add it to the preamble.
 - **Lists and Sub-Questions**: Use `itemize` and `enumerate` environments wherever possible. For questions with sub-parts, you can use `\item[(a)]` to match Benny's formatting.
 - **Math Mode**: Always use math mode for variables like `n`, `i`, etc., to keep formatting consistent.
