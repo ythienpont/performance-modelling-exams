@@ -243,3 +243,7 @@ Explain your answer.
 \begin{problem}{Applications}
    In which of the following two systems is the blocking probability the largest: (1) an Erlang-B system with arrival rate $\lambda$, mean call duration $\frac{1}{\mu}$ and $C$ lines or (2) an Engset system with $\lambda' = \frac{\lambda}{N}$, mean call duration $\frac{1}{\mu}$ and $C$ lines? Explain.
 \end{problem}
+
+\begin{solution}
+    The blocking probability is largest in the Erlang-B system. This is because the Erlang-B system assumes an infinite source pool with a constant arrival rate $\lambda$, leading to higher traffic intensity and more frequent blocking when all $C$ lines are occupied. In contrast, the Engset system has a finite source pool, so the arrival rate decreases as more lines are occupied, reducing the likelihood of blocking. Therefore, the Engset system has a smaller blocking probability due to its finite-source nature.
+\end{solution}
