@@ -6,7 +6,7 @@ Consider a Poisson process with arrival rate $\lambda$ = 2. Assume there is one 
 \begin{solution}
 We are looking for the following probability:
 \begin{align*}
-    &P(N_{0,3}=1 |N_{0,2}=1, N_{1,3}=1) 
+    &P(N_{0,3}=1 |N_{0,2}=1, N_{1,3}=1)
 \end{align*}
 This is the same as looking for these three conditions:
 \begin{enumerate}
@@ -50,7 +50,7 @@ in terms of the entries of \( P \) and \( \pi \). Define a DTMC with transition 
     \tilde{p}_{i,j} = \frac{P_{j,i}\cdot \pi_j}{\pi_i}
   \]
 
-  We can now define the transition matrix $\tilde{P}$ where 
+  We can now define the transition matrix $\tilde{P}$ where
   \[
     \tilde{P}_{i,j}=\tilde{p}_{i,j} = \frac{P_{j,i}\cdot \pi_j}{\pi_i}
   \]
@@ -104,3 +104,47 @@ Consider a queueing network consisting of 2 queues (not necessarily M/M/1 queues
 \begin{problem}{Applications}
 Consider an M/M/1 queue (arrival rate \( \lambda \), service rate \( \mu \)) with the additional property that when a customer arrives it starts an exponential timer with mean \( 1/\theta \) and leaves the queueing system immediately if that timer expires before its service starts. How can you model this queueing system using a CTMC? Give an expression for the stationary distribution. For which value of \( \theta \) is this distribution a Poisson distribution?
 \end{problem}
+
+\begin{solution}
+    Just like the M/M/$\infty$ queue, we increase the rate of a job leaving the queue according to the number of jobs in the queue so
+
+    \begin{align*}
+        q_{i,i-1}& = \mu + \frac{i}{\theta}\\
+        q_{i,i}  & = -(\lambda + \mu + \frac{i}{\theta})\\
+        q_{i,i+1}& = \lambda
+    \end{align*}
+
+    with $q_{0,0} = -\lambda$. The stationary distribution $\pi$ satisfies $\pi Q=0$ and $\sum_{i=0}^\infty\pi=1$.
+
+    Using the balance equations, for $i=0$
+    \[
+        \lambda\pi_0 = \left(\mu+\frac{1}{\theta}\right)\pi_1
+    \]
+    For $i\geq 1$
+    \[
+        \lambda\pi_i = \left(\mu+\frac{i+1}{\theta}\right)\pi_{i+1}
+    \]
+
+    From these terms we can express $\pi_{i+1}$ in terms of $\pi_i$. Starting from $\pi_0$, we can recursively compute
+    \[
+        \pi_i = \pi_0\prod_{k=1}^i\frac{\lambda}{\mu+\frac{k}{\theta}}
+    \]
+
+    We can easily see that when $\mu=0$ and $\theta=\lambda$
+    \[
+        \pi_i = \pi_0\prod_{k=1}^i\frac{\lambda}{\frac{k}{\lambda}}=\pi_0\prod_{k=1}^i\frac{\lambda^2}{k} = \pi_0\frac{\lambda^{2i}}{i!}
+    \]
+
+    and $\pi_0=\exp(-\lambda^2)$ as $\sum_{i=0}^\infty\pi_i=1$ must be satisfied.
+
+    \[
+        \sum_{i=0}^\infty\pi_i=\sum_{i=0}^\infty\pi_0\frac{\lambda^{2i}}{i!}=1
+    \]
+    $\sum_{i=0}^\infty\frac{\lambda^{2i}}{i!}$ is the Taylor expasion of $\exp(\lambda^2)$. Thus
+    \[
+        \pi_0\exp(\lambda^2) = 1
+    \]
+    Solving for $\pi_0$ gives us $\pi_0\exp(-\lambda^2)$
+
+Like Theorem 1.4, this means the stationary distribution is Poisson with parameter $\lambda^2$.
+\end{solution}
