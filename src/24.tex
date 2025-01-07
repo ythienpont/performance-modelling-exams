@@ -29,7 +29,7 @@ Consider a single roll of 5 dice. Set up a DTMC that allows you to compute the p
       \includegraphics[width=0.3\textwidth]{img/24.4.png}
     \end{center}
   \end{figure}
-  
+
 \end{solution}
 
 \begin{problem}{Continuous-Time Markov Chains}
@@ -62,3 +62,35 @@ Intuitively, this result makes sense: the system processes jobs faster due to th
 \begin{problem}{Applications}
   Consider a Jackson network in which each of the $M$ queues is replaced by an infinite number of servers, where the speed of a single server is $\mu_i$ for queue $i$. Assume the routing is such that $(I - P )^{-1}$ exists. Consider the CTMC that keeps track of the number of busy servers in each queue. Derive the global balance equations for this CTMC. Clearly explain the different terms appearing in your equations. What is the condition needed for the Markov chain to be positive recurrent? Give an expression for the stationary distribution (without actually proving it)
 \end{problem}
+\begin{solution}
+    We can write the global balance equation as
+    \begin{align*}
+    \lambda_0 \pi(\mathbf{n})
+    + \sum_{i=1}^M p_{i0} \pi(\mathbf{n}) \mu_i n_i 1[n_i > 0]
+    &= \sum_{i=1}^M \lambda_0 p_{0i} \pi(\mathbf{n} - \mathbf{e}_i) \\
+    &\quad + \sum_{i=1}^M \mu_i n_i p_{i0} \pi(\mathbf{n} + \mathbf{e}_i) \\
+    &\quad + \sum_{\substack{i,j=1 \\ i \neq j}}^M \mu_j n_j p_{ji} \pi(\mathbf{n} + \mathbf{e}_j - \mathbf{e}_i).
+    \end{align*}
+
+    \begin{itemize}
+        \item $\lambda_0 \pi(\mathbf{n})$: \\
+            Represents the rate at which external arrivals contribute to the state $\mathbf{n}$.
+        \item $\sum_{i=1}^M p_{i0} \pi(\mathbf{n}) \mu_i n_i 1[n_i > 0]$: \\
+            Accounts for the departures from the system to an external sink, where a job leaves the queue at rate $\mu_in_i$ given there is at least one job in queue $i$.
+        \item $\sum_{i=1}^M \lambda_0 p_{0i} \pi(\mathbf{n} - \mathbf{e}_i)$: \\
+            This term represents external arrivals into queue $i$.
+        \item $\sum_{i=1}^M \mu_i n_i p_{i0} \pi(\mathbf{n} + \mathbf{e}_i)$: \\
+            This term represents jobs leaving the system entirely.
+        \item $\sum_{\substack{i,j=1 \\ i \neq j}}^M \mu_j n_j p_{ji} \pi(\mathbf{n} + \mathbf{e}_j - \mathbf{e}_i)$: \\
+            This term represents jobs moving between queues.
+    \end{itemize}
+
+    The routing matrix $P$ satisfies $(I - P )^{-1}$, ensuring a stable flow in the network. As long as $\lambda_i$ is finite and $\mu_i > 0$, the CTMC is positive recurrent.
+
+    The stationary distribution can be described as
+    \[
+        \pi(\mathbf{n}) = \prod_{i=1}^M\frac{\rho_i^{n_i}}{n_i!}\exp(-\rho_i)
+    \]
+
+    \textbf{Note}: The whole excercise is a variant on Jackson's theorem.
+\end{solution}
