@@ -14,7 +14,7 @@ Given a DTMC with state space S such that state i = 1 has period $d_1$ = 3, stat
   \]
 \end{solution}
 
-with 
+with
 
 \[
 P =
@@ -28,7 +28,7 @@ P =
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
   0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
   1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0
 \end{bmatrix}
 \]
 
@@ -139,7 +139,7 @@ q_{i,j} =
 \end{cases}
 \]
 
-Let $(\pi_0, \pi_1, \ldots)$ be its invariant distribution. Give an explicit expression for $\frac{\pi_{13}}{\pi_0}$. 
+Let $(\pi_0, \pi_1, \ldots)$ be its invariant distribution. Give an explicit expression for $\frac{\pi_{13}}{\pi_0}$.
 
 Explain your answer.
 \end{problem}
@@ -148,12 +148,12 @@ Explain your answer.
     Consider an M/M/1 queue with arrival rate $\lambda$ and service rate $\mu > \lambda$. Assume a job is labelled type-1 upon arrival with probability $p$ and type-2 otherwise. Jobs are labelled independent of each other. Instead of serving the jobs in FCFS order, type-1 jobs get priority over type-2 jobs. A type-2 job can only be in service if no type-1 jobs are present and is interrupted (and resumed later) if a type-1 job arrives. What is the mean response time of a type-1 job in such a system? Explain. Derive an expression for the mean response time of a type-2 job.
 \end{problem}
 \begin{solution}
-  Consider $\lambda_1 = p\lambda$ and $\lambda_2 = (1-p)\lambda$ as the arrival rates for type-1 and type-2 jobs respectively. For a type-1 job, type-2 jobs don't exist, as they are given priority. We find the mean response time for type-1 jobs $W_1$ using Little's law 
+  Consider $\lambda_1 = p\lambda$ and $\lambda_2 = (1-p)\lambda$ as the arrival rates for type-1 and type-2 jobs respectively. For a type-1 job, type-2 jobs don't exist, as they are given priority. We find the mean response time for type-1 jobs $W_1$ using Little's law
   \[
     W_1 = \frac{1}{\mu - \lambda_1} = \frac{1}{\mu - p\lambda}
   \]
 
-  A type-2 job can only be serviced when there are no type-1 jobs present in the systems. We define $\rho_1 = \frac{\lambda_1}{\mu}$ as the fraction of the time that the server is busy servicing type-1 jobs. The actual service time for type-2 jobs $\mu_2$ can be written as 
+  A type-2 job can only be serviced when there are no type-1 jobs present in the systems. We define $\rho_1 = \frac{\lambda_1}{\mu}$ as the fraction of the time that the server is busy servicing type-1 jobs. The actual service time for type-2 jobs $\mu_2$ can be written as
   \[
     \mu_2 = \mu(1-\rho_1) = \mu(1-\frac{\lambda_1}{\mu}) = \mu - \lambda_1
   \]
@@ -169,6 +169,76 @@ Explain your answer.
 \begin{problem}{Applications}
    Consider a Jackson network with $M = 4$ queues and $\mu_1 = \mu_2 = \mu_3 = \mu_4 = 1$. All new arrivals either join queue 1 or 2 (with equal probability). The routing probabilities are as follows: $ p_{1,3} = p_{1,4} = \frac{1}{2}$, $p_{2,3} = \frac{1}{8}$, $p_{2,4} = \frac{7}{8}$, $p_{4,0} = 1$, $p_{3,3} = p_{3,0} = \frac{1}{2}$. State a necessary and sufficient condition such that the Markov chain of the joint queue lengths is positive recurrent. For which of these 4 queues is the input process Poisson? Derive an expression for the probability that both queue 3 and 4 are empty at the same time.
 \end{problem}
+
+\begin{solution}
+    For the Markov chain to be positive recurrent, we require $\lambda_i < \mu_i$ for all queues. We calculate each $\lambda_i$ using the flow-balance equation:
+    \[
+        \lambda_i = \lambda_0 p_{0,i} + \sum_{j=1}^M \lambda_j p_{j,i}.
+    \]
+
+    The computations for each $\lambda_i$ are as follows:
+    \begin{align*}
+        \lambda_1 & = \lambda_0 p_{0,1} = \frac{\lambda_0}{2}, \\
+        \lambda_2 & = \lambda_0 p_{0,2} = \frac{\lambda_0}{2}, \\
+        \lambda_3 & = \lambda_1 p_{1,3} + \lambda_2 p_{2,3} + \lambda_3 p_{3,3}, \\
+        \lambda_4 & = \lambda_1 p_{1,4} + \lambda_2 p_{2,4}.
+    \end{align*}
+
+    Substituting into the equation for $\lambda_3$:
+    \[
+        \lambda_3 = \frac{\lambda_1}{2} + \frac{\lambda_2}{8} + \frac{\lambda_3}{2}.
+    \]
+
+    Rearranging terms:
+    \[
+        \lambda_3 - \frac{\lambda_3}{2} = \frac{\lambda_1}{2} + \frac{\lambda_2}{8},
+    \]
+    which simplifies to:
+    \[
+        \frac{\lambda_3}{2} = \frac{\lambda_1}{2} + \frac{\lambda_2}{8}.
+    \]
+
+    Solving for $\lambda_3$:
+    \[
+        \lambda_3 = \lambda_1 + \frac{\lambda_2}{4} = \frac{\lambda_0}{2} + \frac{\lambda_0}{8} = \frac{5\lambda_0}{8}.
+    \]
+
+    Similarly, for $\lambda_4$:
+    \[
+        \lambda_4 = \lambda_1 p_{1,4} + \lambda_2 p_{2,4},
+    \]
+    substituting:
+    \[
+        \lambda_4 = \frac{\lambda_1}{2} + \frac{7\lambda_2}{8} = \frac{\lambda_0}{4} + \frac{7\lambda_0}{16} = \frac{11\lambda_0}{16}.
+    \]
+
+    For positive recurrence, we require $\lambda_i < \mu_i = 1$ for all $i$, leading to the condition:
+    \[
+        \lambda_0 < 2.
+    \]
+
+    \textbf{Poisson Input Processes}: The input process for all queues except queue 3 is Poisson. Queue 3 has a self-loop (as $p_{3,3} > 0$), which introduces correlation between interarrival times, violating the memoryless property of Poisson processes.
+
+    \textbf{Probability of Empty Queues}: The probability that a queue $i$ is empty is given by $(1 - \rho_i)$, where $\rho_i = \frac{\lambda_i}{\mu_i}$. Assuming independence between the queues, the joint probability that both queue 3 and queue 4 are empty is:
+    \[
+        (1 - \rho_3)(1 - \rho_4).
+    \]
+
+    Substituting for $\rho_3$ and $\rho_4$:
+    \[
+        (1 - \rho_3)(1 - \rho_4) = \left(1 - \frac{\lambda_3}{\mu_3}\right) \left(1 - \frac{\lambda_4}{\mu_4}\right).
+    \]
+
+    With $\mu_3 = \mu_4 = 1$, we have:
+    \[
+        (1 - \rho_3)(1 - \rho_4) = \left(1 - \frac{5\lambda_0}{8}\right) \left(1 - \frac{11\lambda_0}{16}\right).
+    \]
+
+    This expression is valid only for:
+    \[
+        \lambda_0 \in [0, \frac{16}{11}].
+    \]
+\end{solution}
 
 \begin{problem}{Applications}
    In which of the following two systems is the blocking probability the largest: (1) an Erlang-B system with arrival rate $\lambda$, mean call duration $\frac{1}{\mu}$ and $C$ lines or (2) an Engset system with $\lambda' = \frac{\lambda}{N}$, mean call duration $\frac{1}{\mu}$ and $C$ lines? Explain.
