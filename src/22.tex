@@ -72,26 +72,7 @@ in terms of the entries of \( P \) and \( \pi \). Define a DTMC with transition 
 Give an example of an irreducible, transient DTMC with period 2. Explain why your example has these properties.
 \end{problem}
 \begin{solution}
-    A simple example would be :
-    \begin{align*}
-        &S=\{0,1,2\}
-    \end{align*}
-    With transition matrix:
-    P=
-    \[
-        P = \begin{pmatrix}
-                0 & 1/2 & 1/2 \\
-                1/2 & 0 &1/2  \\
-                1/2 & 1/2 & 0
-        \end{pmatrix}
-    \]
-    \underline{irreducable}\\
-    Every state can be reached by any other state.\\
-    \underline{transient}\\
-    There is a non-zero probability of never returning to a state once leaving it.\\
-    \\
-    \underline{period 2}\\
-    Every state can return to itself with a period of 2.
+    A DTMC that is both transient and irreducible must have an infinte state space. A simple example is the BD Markov chain where $p_0 = 1$ and $p_i = \frac{1}{2}$.
 \end{solution}
 \begin{problem}{PASTA}
 Consider a queueing system with Poisson arrivals, where the service time of customer \( n \) depends on the inter-arrival time between customer \( n - 1 \) and \( n \). Can we apply the PASTA property for this queueing system? Explain your answer.
@@ -104,6 +85,49 @@ Consider a queueing system with Poisson arrivals, where the service time of cust
 \begin{problem}{Applications}
 Consider a queueing network consisting of 2 queues (not necessarily M/M/1 queues). Type 1 jobs arrive at rate \( \lambda_1 \) and first visit queue 1 followed by queue 2. Type 2 jobs arrive at rate \( \lambda_2 \) and visit queue 1 only, while type 3 jobs arrive at rate \( \lambda_3 \) and only visit queue 2. Assume that the mean time that a random job spends in the queueing network equals 5, the mean time that a random type 1 or type 2 job spends in queue 1 is 3 and that the mean time that a random type 1 or 3 job spends in queue 2 is 4. Determine the arrival rates \( \lambda_1, \lambda_2 \) and \( \lambda_3 \) given that \( \lambda_1 = \lambda_2 \) and \( \lambda = \lambda_1 + \lambda_2 + \lambda_3 = 1 \). Does your answer change if type 1 jobs visit both queues in the opposite order? Explain.
 \end{problem}
+
+\begin{solution}
+    Let $T$ denote the mean total time. We can write this as
+    \[
+        T = P_1T_1 + P_2T_2 + P_3T_3
+    \]
+
+    Where
+    \begin{itemize}
+        \item $T_i$ is the mean total time spent by a job of type $i$ in the network.
+        \item $P_i=\frac{\lambda_i}{\lambda}$ is the proportion of jobs of type $i$.
+    \end{itemize}
+
+    Since $\lambda=1$, $P_i = \lambda_i$. We also know
+    \begin{align*}
+        T_1 & = T_{1,1} + T_{1,2} = 3 + 4 = 7 \\
+        T_2 & = T_{2,2} = 3 \\
+        T_3 & = T_{3,2} = 4
+    \end{align*}
+
+    We find
+    \[
+        T = 7\lambda_1 + 3\lambda_2 + 4\lambda_3 = 5
+    \]
+
+    Given that $\lambda_1 = \lambda_2$, we find that $10\lambda_1 = 5 - 4\lambda_3$.
+
+    We also know $\lambda_1 + \lambda_2 + \lambda_3 = \lambda = 1$, thus $\lambda_3 = 1 - 2\lambda_1$.
+
+    Using the equation above in the mean total time equation:
+    \begin{align*}
+        10\lambda_1 &= 5 - 4(1-2\lambda_1) = 5 - 4 + 8\lambda_1 \\
+        2\lambda_1  &= 1 \\
+        \lambda_1  &= \frac{1}{2}
+    \end{align*}
+
+    We conclude
+    \[
+        \boxed{\lambda_1 = \lambda_2 = \frac{1}{2}, \lambda_3 = 0}
+    \]
+
+    If type 1 jobs where to visit the second queue first, this wouldn't affect the mean total time in the system, therefore our answer doesn't change.
+\end{solution}
 
 \begin{problem}{Applications}
 Consider an M/M/1 queue (arrival rate \( \lambda \), service rate \( \mu \)) with the additional property that when a customer arrives it starts an exponential timer with mean \( 1/\theta \) and leaves the queueing system immediately if that timer expires before its service starts. How can you model this queueing system using a CTMC? Give an expression for the stationary distribution. For which value of \( \theta \) is this distribution a Poisson distribution?
