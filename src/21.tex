@@ -1,9 +1,9 @@
 \exam{2021}
 \begin{problem}{Poisson process}
-Let $P_1$ and $P_2$ be two independent Poisson processes with rates 
+Let $P_1$ and $P_2$ be two independent Poisson processes with rates
 $\lambda_1$ and $\lambda_2$ . Let $N_{t,i}$ be the number of arrivals of process $P_i$ in [0, t], for i = 1, 2. Show that:
 \begin{align*}
-    \lambda_2^k P(N_{t,1} = N_{t,2} + k) 
+    \lambda_2^k P(N_{t,1} = N_{t,2} + k)
     &=\lambda_1^k P(N _{t,2} = N_{t,1} + k)
 \end{align*}
 \end{problem}
@@ -61,10 +61,68 @@ Consider two independent Poisson processes \( P_1 \) and \( P_2 \) with rates \(
         \lambda_2 > 2\lambda_1
     \end{align*}
 \end{solution}
+
 \begin{problem}{Applications}
 Consider 2 queueing systems. The first is an M/M/1 queue with arrival rate \( \lambda = 0.3 \) and mean service time equal to 2. The second is a Jackson network with \( M = 1 \), \( \mu_1 = 4 \), and \( p_{1,1} = \frac{1}{3} \). How should we set \( \lambda_0 \) such that the queue length distribution is the same in both queueing systems? Explain.
 \end{problem}
+\begin{solution}
+The mean queue length of an M/M/1 queue \( L \) is computed as
+\[
+L = \frac{\rho}{1-\rho}
+\]
+
+For a Jackson network with a single M/M/1 queue, this is equivalent. We now need to find \( \lambda_1 \) in function of \( \lambda_0 \) to solve the problem.
+
+In a Jackson network, \( \lambda_i \) is calculated as
+\[
+\lambda_i = \lambda_0 p_{0i} + \sum_{j=1}^M p_{ji} \lambda_j
+\]
+
+For our problem, we have \( p_{01} = 1 \), \( p_{11} = \frac{1}{3} \), and \( M = 1 \). The above equation simplifies to
+\[
+\lambda_1 = \lambda_0 + \frac{\lambda_1}{3}
+\]
+
+Rearranging, we find
+\[
+\lambda_1 = \frac{3\lambda_0}{2}.
+\]
+
+We now look for a \( \lambda_0 \) such that \( \rho = \frac{\lambda}{\mu} = \frac{0.3}{2} = 0.15 \) equals the system load \( \rho_1 = \frac{\lambda_1}{\mu_1} \) of the queue in our Jackson network.
+
+\[
+\rho_1 = \frac{\lambda_1}{\mu_1} = \frac{\frac{3\lambda_0}{2}}{4}.
+\]
+
+Equating \( \rho_1 \) to \( 0.15 \), we get
+\[
+\frac{\frac{3\lambda_0}{2}}{4} = 0.15.
+\]
+
+Simplify to solve for \( \lambda_0 \):
+\[
+\frac{3\lambda_0}{8} = 0.15,
+\]
+
+\[
+\lambda_0 = \frac{8 \cdot 0.15}{3} = \frac{1.2}{3} = 0.4.
+\]
+
+Thus, \( \lambda_0 = 0.4 \).\end{solution}
 
 \begin{problem}{Applications}
 Consider an Erlang-C system with \( C \) servers, i.e. an M/M/C/C+Q queue with \( Q = \infty \). Assume we know that on average \( k \) jobs are waiting in the waiting room to enter a server. Does the mean time that a customer spends in the system depend on \( C \), \( k \), or both \( C \) and \( k \)? Explain.
 \end{problem}
+\begin{solution}
+    Let $L_q=k$ be the mean waiting room length. Little's law tells us that
+    \[
+        L_q=\lambda W_q
+    \]
+    where $W_q$ is the mean waiting time in the queue. The mean total time $W$ is the sum of the mean waiting time $W_q$ and the mean service time $S=\frac{1}{\mu}$.
+
+    \[
+        W = W_q + S
+    \]
+
+    From $L_q$ we calculate $W_q=\frac{L_q}{\lambda}$. We notice that none of the formulas depend on $C$, so the mean total time $W$ depends only on $k$.
+\end{solution}

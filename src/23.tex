@@ -3,6 +3,34 @@
 Consider a Poisson process with rate $\lambda$. Let $T_n$ be the time of the $n$-th arrival. Consider a second arrival process and denote $Z_n$ as the time of the $n$-th arrival of this second arrival process. Assume $Z_n$ = c$T_n$ for some constant c $>$ 0. What can you say about this second arrival process? Prove your answer. What do we know about the superposition of these two arrival processes?
 \end{problem}
 
+\begin{solution}
+    We have to wait $c$ times longer on average in the new arrival process compared to the original process. Consequently, there are $c$ times fewer arrivals in the new process than in the original process over the same time interval. This implies that the new arrival process is also Poisson, but with rate $\frac{\lambda}{c}$.
+    \vspace{1em}
+
+
+    \noindent\textbf{Note}: \textit{Intuitively clear, but I'm not too sure about the proof.}
+
+    \vspace{1em}
+    \noindent
+    Let the interarrival times of the original process be $I_n$, which are exponentially distributed with rate $\lambda$, i.e., $I_n\sim \exp(\lambda)$. The $n$-th arrival time $T_n$ of the original process is the sum of the first $n$ interarrival times:
+
+    \[
+        T_n = \sum_i^nI_i
+    \]
+
+    The new arrival process is defined by scaling the original arrival times
+
+    \[
+        Z_n = cT_n = c\sum_i^nI_i = \sum_i^ncI_i
+    \]
+
+    Since $I_i\sim \exp(\lambda)$, scaling $I_i$ by $c$ results in new interarrival times $I^Z_i=cI_i\sim\exp(\frac{\lambda}{c})$. This scaling does not affect the independence of the interarrival times $I_i$, which means the interarrival times of the new process remain independent.
+
+    The independence and exponential distribution of the interarrival times confirm that the new process satisfies the memoryless property, confirming our claim that it is a Poisson process with rate $\frac{\lambda}{c}$.
+
+    From Theorem 3.1 we know that the superposition of two independent Poisson processes with parameters $\lambda_1$ and $\lambda_2$ is again a Poisson process with parameter $\lambda_1+\lambda_2$. Therefore, the rate of the superposition $\lambda_s$ is equal to $\lambda + \frac{\lambda}{c}$.
+\end{solution}
+
 \begin{problem}{Discrete-Time Markov Chains}
 Given a DTMC with state space S such that state i = 1 has period $d_1$ = 3, state i = 2 has period $d_2$ = 5 and there are at least 3 open communicating classes. What is the smallest possible value for $| S |$  ? Explain your answer. Give an example (by defining P) of a DTMC such that $| S |$ is minimized
 \end{problem}
