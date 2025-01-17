@@ -2,6 +2,17 @@
 \begin{problem}{Poisson Process}
  Consider a Poisson process with rate $\lambda =2$. Assume 4 arrivals occurred in between time 0 and 1. What is the probability that you observe another 4 arrivals between time 1 and 2? Explain your answer.
 \end{problem}
+\begin{solution}
+  Arrivals are independent. The probability of $k$ arrivals in time $t$ is given by
+  \[
+    P[N_t=k] = \frac{(\lambda t)^k}{k!}\exp(-\lambda t)
+  \]
+
+  Thus for $t=2-1=1$ and $k=4$ we have
+  \[
+    P[N_1=4] = \frac{(\lambda \cdot 1)^4}{4!}\exp(-\lambda \cdot 1) = \frac{\lambda^4}{24}\exp(-\lambda)
+  \]
+\end{solution}
 
 \begin{problem}{Discrete Time Markov chains}
 Give an example of an irreducible Markov chain
@@ -15,6 +26,18 @@ Consider a discrete-time positive recurrent Markov chain and let $m_{i,j}$ be th
 \begin{problem}{Continuous Time Markov Chains}
 Give an example of an infinite state, transient continuous time Markov chain such that its uniformized and embedded Markov chain are characterized by the same transition probability matrix. Explain your answer.
 \end{problem}
+
+\begin{solution}
+  Consider the CTMC with $q_{i,i+1}=\lambda$, $q_{i,i}=-\lambda$ and $q_{i,j}=0$ for all other $j$.
+  \begin{itemize}
+    \item \textbf{Uniformization} transforms $Q$ into $P=Q/\lambda + I$. Then $p_{i,i} = \frac{-\lambda}{\lambda} + 1 = 0$ and $p_{i,i+1} = \frac{\lambda}{\lambda} = 1$.
+
+    \item The \textbf{embedded} Markov chain characterized by $P$ with $p_{i,j}=\frac{q_{i,j}}{-q_{i,i}}$ is obviously the same $P$ as before.
+
+  \end{itemize}
+  The chain is transient, since once we transition out of a state, we can never get back to it.
+
+\end{solution}
 
 \begin{problem}{Server Farm}
 Consider a server farm consisting of $2$ servers. Jobs arrive according to a Poisson process with rate $\lambda$ and are probabilistically split among the two servers with a fraction $p$ of the jobs going to server $1$. The service time of a job on server $i$ is exponential with mean $1/\mu_i$, for $i = 1, 2$. Give an expression for the mean response time of a job in the server farm. How does your result change if the service times are

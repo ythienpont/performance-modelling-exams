@@ -3,7 +3,18 @@
  Suppose spam mail arrives in your mailbox as a Poisson process with rate $\lambda_s$, regular mail arrives as a Poisson process with rate $\lambda_r$ and both processes are independent. (1) What is the mean time between any two mails? (2) What is the probability that exactly 5 out of 10 consecutive mails are spam mails?
  \end{problem}
 
-\begin{problem}{Discrete Time Markov Chains} 
+ \begin{solution}
+   \begin{itemize}
+    \item[(1)] The superposition of two independent Poisson processes with parameters $\lambda_1$ and $\lambda_2$ is again a Poisson process with parameter $\lambda_1 + \lambda_2$. We find a Poisson process with paramter $\lambda = \lambda_s + \lambda_r$. The mean time between any two mails is therefore $\frac{1}{\lambda}$.
+    \item[(2)] If a Poisson process with parameter $\lambda$ is randomly split into two subprocesses with probability $p$, then the resulting processes are indenependent Poisson processes with parameters $\lambda p$ and $\lambda(1-p)$. We know the original processes have rates $\lambda_s$ and $\lambda_r$, so $p_s$ must be $\frac{\lambda_s}{\lambda}$. For $p_r$ we see,
+      \[
+        p_r = 1 - p_s = 1 - \frac{\lambda_s}{\lambda_s +  \lambda_r} = \frac{\lambda_s + \lambda_r}{\lambda_s +  \lambda_r} - \frac{\lambda_s}{\lambda_s +  \lambda_r} = \frac{\lambda_r}{\lambda_s + \lambda_r}
+      \]
+       Intuitively, this makes sense. The probability for 5 spam mails is $p_s^5$, for 5 regular mails $p_r^5$. There are 6 positions where the consecutive spam mails could arrive. The probability becomes $6p_s^5p_r^5$.
+   \end{itemize}
+ \end{solution}
+
+\begin{problem}{Discrete Time Markov Chains}
 Let \( d_i \) be the period of state \( i \) in a DTMC. Give an example of a DTMC with 7 states (by defining \( P \)) such that \( (d_1, d_2, \dots, d_7) = (3, 3, 2, 1, 3, 2, 3) \) and exactly 2 states are recurrent. Explain your answer.
 \end{problem}
 
@@ -11,13 +22,90 @@ Let \( d_i \) be the period of state \( i \) in a DTMC. Give an example of a DTM
 Consider a DTMC with state space \( \mathbb{Z} \). Let \( p_{0,1} = \frac{1}{2} \), \( p_{i,i+1} = e^{-i/100} \) for \( i > 0 \), and \( p_{i,i-1} = e^{i/100} \) for \( i < 0 \). Further, let \( p_{i,i+1} = 1 - p_{i,i-1} \) for \( i \in \mathbb{Z} \). Is this DTMC positive recurrent, null recurrent, or transient? Prove your answer.
 \end{problem}
 
+\begin{solution}
+  The DTMC is irreducible, each state communicates with every other state. There are no transient states, as the probability to revisit a state is never 0. The mean time between two visits of a state could be infinite however, since
+  \[
+    \lim_{i\rightarrow -\infty} e^{\frac{i}{100}} = 0 \text{ and } \lim_{i\rightarrow \infty} e^{\frac{-i}{100}} = 0
+  \]
+
+  Therefore, the DTMC is null recurrent.
+\end{solution}
+
 \begin{problem}{Repairing Servers}
 Consider two machines maintained by a single repairman. Machine \( i \), for \( i = 1, 2 \), operates for an exponentially distributed amount of time with mean \( 1/\gamma_i \) before breaking down. The repair time for machine \( i \) is also exponential with mean \( 1/\beta_i \), but the repairman can only work on one machine at a time. Assume that machines are repaired in the order in which they fail. Set up a CTMC to find the long-run proportions of time that each machine is working (no need to compute these values). How does your answer change if the repairman always works on machine 1 first if it fails?
 \end{problem}
 
+\begin{solution}
+  We define state 0 as OK, state 1 as 1 broken, state 2 as 2 broken, state 3 as both broken with 1 first and state 4 as both broken with 2 first. The transitions are intuitive, i.e 1 can transition to 3 and 0, etc.
+
+  We define the rate matrix Q as
+  \[
+  \begin{bmatrix}
+    -(\gamma_1 + \gamma_2)& \gamma_1 & \gamma_2 & 0 & 0 \\
+    \beta_1 & -(\beta_1 + \gamma_2) & 0 & \gamma_2 & 0 \\
+    \beta_2 & 0 & -(\beta_2 + \gamma_1) & 0 & \gamma_1 \\
+    0 & 0 & \beta_1 & -\beta_1 & 0 \\
+    0 & \beta_2 & 0 & 0 & -\beta_2
+  \end{bmatrix}
+  \]
+
+  If the repairman always repairs 1 first we don't need the extra state:
+  \[
+  \begin{bmatrix}
+    -(\gamma_1 + \gamma_2)& \gamma_1 & \gamma_2 & 0 \\
+    \beta_1 & -(\beta_1 + \gamma_2) & 0 & \gamma_2 \\
+    \beta_2 & 0 & -(\beta_2 + \gamma_1) & \gamma_1 \\
+    0 & 0 & \beta_1 & -\beta_1  \\
+  \end{bmatrix}
+  \]
+
+\end{solution}
+
+
 \begin{problem}{Server Order}
 Assume jobs arrive in a system with 2 servers as a Poisson process with rate \( \lambda \). All jobs must be served by both servers, and the service time of a job in server \( i \) is exponential with mean \( 1/\mu_i \), for \( i = 1, 2 \). Assume a fraction \( p \) of the incoming jobs first joins server 1 and then proceeds to server 2, while the remaining fraction \( 1 - p \) visits both servers in the reversed order. Can you use a Jackson network to determine the optimal choice of \( p \) such that the time that a job spends in the system is minimized?
 \end{problem}
+
+\begin{solution}
+  While a Jackson network does not directly allow conditional routing like "visit server 1 first, then server 2" or "server 2 first, then server 1," this routing can be approximated on average by treating the system as if jobs are sent to servers probabilistically at the entry point with probabilities $p$ and $1-p$, and then routed between servers in the same proportion. We find
+  \begin{align*}
+    \lambda_1 &= \lambda_0p_{0,1} + \lambda_2p_{2,1} \\
+    \lambda_2 &= \lambda_0p_{0,2} + \lambda_1p_{1,2}
+  \end{align*}
+
+  Define $p=p_{0,1}$, then $p_{0,2}=1-p$ and $p_{1,2} = p_{0,1} = p$. Therefore
+  \begin{align*}
+    \lambda_1 &= \lambda_0p + \lambda_2(1-p) \\
+    \lambda_2 &= \lambda_0(1-p) + \lambda_1p
+  \end{align*}
+
+  From the last equation we find
+  \[
+    \lambda_1 = \frac{\lambda_2-\lambda_0(1-p)}{p}
+  \]
+
+  Substituting $\lambda_1$ in the first equation gives us
+
+  \begin{align*}
+    \frac{\lambda_2-\lambda_0(1-p)}{p} &= \lambda_0p + \lambda_2(1-p) \\
+    \Leftrightarrow\lambda_2-\lambda_0(1-p) &= \lambda_0p^2 + \lambda_2(1-p)p \\
+    \Leftrightarrow\lambda_2-\lambda_2(1-p)p &= \lambda_0p^2 + \lambda_0(1-p) \\
+    \Leftrightarrow\lambda_2(1-(p-p^2) &= \lambda_0(p^2 + 1-p) \\
+    \Leftrightarrow\lambda_2 &= \lambda_0
+  \end{align*}
+  We find
+
+  \[
+    \lambda_1 = \lambda_0p + \lambda_2(1-p) = \lambda_0p + \lambda_0(1-p) = \lambda_0
+  \]
+
+  The total average response time $W$ for an entire network is
+
+  \[
+    W = \frac{1}{\lambda_0}\sum_{i=1}^M\frac{\rho_i}{1-\rho_i}
+  \]
+  $\rho_1 = \frac{\lambda_0}{\mu_1}$ and $\rho_2 = \frac{\lambda_0}{\mu_2}$. We conclude that the average response time doesn't depend on $p$.
+\end{solution}
 
 \begin{problem}{M/M/1 with Group Arrivals}
 Consider an M/M/1 queue with arrival rate \( \lambda \) and service rate \( \mu \), but instead of having one arrival at a time, arrivals occur in groups of 2. Set up a CTMC to study this queueing model. Write down the global balance equations and use them to prove that
@@ -27,6 +115,76 @@ Consider an M/M/1 queue with arrival rate \( \lambda \) and service rate \( \mu 
    holds for \( i \geq 2 \), where \( \pi_i \) represents the stationary probability that the queue contains \( i \) jobs.
 \end{problem}
 
+\begin{solution}
+  We define the rate matrix \(Q\) as:
+  \[
+  q_{i,j} =
+  \begin{cases}
+    \lambda & \text{if } j = i+2, \\
+    \mu & \text{if } j = i-1, \\
+    -(\mu + \lambda) & \text{if } j = i \neq 0, \\
+    -\lambda & \text{if } j = i = 0, \\
+    0 & \text{otherwise.}
+  \end{cases}
+  \]
+
+  The global balance equations are defined as
+  \[
+    \sum_{j\neq i} \pi_jq_{j,i}=\pi_i\sum_{j\neq i}q_{i,j}
+  \]
+
+  For $i\geq 2$, we find
+  \[
+    \pi_{i+1}q_{i+1,i} + \pi_{i-2}q_{i-2,i}=\pi_i(q_{i,i+2} + q_{i,i-1})
+  \]
+  \[
+    \pi_{i+1}\mu + \pi_{i-2}\lambda = \pi_i(\lambda + \mu)
+  \]
+
+  For $i={0,1,2}$, we have
+  \begin{align*}
+    \pi_0\lambda &= \pi_1\mu \\
+    \pi_1(\lambda+\mu) &= \pi_2\mu\\
+    \pi_2(\lambda+\mu) &= \pi_0\lambda + \lambda_3\mu
+  \end{align*}
+
+  We see
+  \begin{align*}
+    \pi_2\mu  &= \pi_1(\lambda+\mu) \\
+              &= \pi_1\mu  + \pi_1\lambda\\
+              &= \pi_0\lambda  + \pi_1\lambda
+  \end{align*}
+
+  Thus the equation holds for $i$.
+  %So it holds for $i=2$, now for $i+1$
+  %\begin{align*}
+  %  \pi_3\mu  &= \pi_2(\lambda+\mu) -\pi_0\lambda\\
+  %            &= \pi_2\lambda + \pi_2\mu  - \pi_0\lambda\\
+  %            &= \pi_2\lambda + \pi_1\lambda + \pi_1\mu  - \pi_0\lambda\\
+  %            &= \pi_2\lambda + \pi_1\lambda + \pi_0\lambda  - \pi_0\lambda\\
+  %            &= \pi_2\lambda  + \pi_1\lambda
+  %\end{align*}
+
+  We now try to prove for $i+1$. From the global balance equation we know
+
+  \begin{align*}
+    \pi_{i+1}\mu + \pi_{i-2}\lambda &= \pi_i(\lambda + \mu) \\
+    \pi_{i+1}\mu  &= \pi_i\lambda + \pi_i\mu - \pi_{i-2}\lambda
+  \end{align*}
+
+  Using our induction hypothesis for $i$, we get
+  \begin{align*}
+    \pi_{i+1}\mu  &= \pi_i\lambda + \pi_{i-1}\lambda + \pi_{i-2}\lambda - \pi_{i-2}\lambda \\
+    &= \pi_i\lambda + \pi_{i-1}\lambda
+  \end{align*}
+
+  Thus we have proven that the equation holds for all $i \geq 2$
+\end{solution}
+
 \begin{problem}{Blocking Time}
 Consider an Erlang-B system (i.e., an M/M/C/C queue). Such a system alternates between periods where incoming calls are blocked and periods where calls are accepted. What is the mean duration of a period during which calls are blocked? How can you determine the mean duration of a period during which calls are accepted?
 \end{problem}
+
+\begin{solution}
+  A system doesn't accept calls when all lines are full, i.e. state $C$. State $C$ is visited for an exponential amount of time with mean $\frac{1}{C\mu}$. A system goes into the blocked state with a rate of arrival to state $C$, equal to $\lambda\pi_{C-1}$. The mean duration of this period is $\frac{1}{\lambda\pi_{C-1}}$.
+\end{solution}

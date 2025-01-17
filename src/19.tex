@@ -3,9 +3,28 @@
 Consider a Poisson process with rate $ \lambda$. Assume $n$ arrivals occurred in between time $0$ and $t$. Give an expression for the probability that no arrivals occur between time $t/3$ and $2t$? Explain how you obtained your expression.
 \end{problem}
 
+\begin{solution}
+  Arrivals are independent. Even though there were $n$ arrivals between $0$ and $t$, this doesn't influence the probability of having no arrivals between $t/3$ and $2t$.
+
+  \[
+    P[I_n \leq t] = 1 - \exp(-\lambda t) \Rightarrow P[I_n > t] = 1 - (1 - \exp(-\lambda t)) = \exp(-\lambda t)
+  \]
+
+  We find our $t$ as $2t -t/3 = \frac{5t}{3}$. Our final expression is $\exp(-\lambda \frac{5t}{3})$.
+\end{solution}
+
 \begin{problem}{Discrete Time Markov Chains}
 What is the least number of non-zero entries in the transition probability matrix $P$ of a discrete time irreducible aperiodic Markov chain with $n > 2$ states? Does your answer change if we demand that the chain has period 2? Explain your answers.
 \end{problem}
+
+\begin{solution}
+  For an irreducible aperiodic Markov chain each state we need a single SCC. We need one transition per node to make cycle, and one more for a self loop to ensure aperiodicity, so $n+1$.
+
+  For an irreducible chain with period 2, it differs for even or odd states. For an even amount of states we create a cycle and then a single transition in the reverse direction, since the period is defined as the greatest common divisor of all the time epochs at which the system can be in state $i$, a cycle with even nodes and a possibility to increase the cycle with any multiple of two gives us a period of 2. So $n+1$ non-zero entries.
+  For an odd amount of states, we need to make a chain with two transitions per state, $2(n-1)$ non-zero entries. (Think of a BD chain)
+
+  % TODO: Add a drawing, I don't think this is too hard to imagine however.
+\end{solution}
 
 \begin{problem}{Continuous Time Markov Chains}
 Consider a continuous time Markov chain on the state space $S = \{(i, j)|i \geq 0, j \geq 0\}$ and assume the transition rates are such that
