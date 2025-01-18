@@ -39,6 +39,19 @@ q_{(0,j),(j+1,0)} = 1.
 Prove that this Markov chain is positive recurrent.
 \end{problem}
 
+%\begin{solution}
+ % We consider the DTMC characterized by $P$ obtained by uniformization of $Q$.
+ % \[
+ %   P=\frac{Q}{\lambda}+I \text{ with } \lambda = \max_{i\in S}-q_{i,i}
+ % \]
+ % It's clear that $\lambda = 3$. We see
+ % \begin{align*}
+ %   p_{(i,j),(i+1,j-1)} &= \frac{2}{3}\\
+ %   p_{(i,j),(i-1,j+1)} &= \frac{1}{3}
+ % \end{align*}
+ %for $j > 0$ and $i > 0$.
+%\end{solution}
+
 \begin{problem}{You've Got Mail}
 Bob receives both regular mail and spam mail. An incoming
 spam mail is detected as spam with probability $p$ and moved to Bob’s spam folder.

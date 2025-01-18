@@ -36,6 +36,15 @@ Consider a single roll of 5 dice. Set up a DTMC that allows you to compute the p
 Give an example of a positive recurrent CTMC $(X_t)_{t\geq 0}$ with an infinite number of states such that $\lim_{i\rightarrow\infty} D_i = 0$, where $D_i$ is the drift of the embedded Markov chain $(Y_n)_{n\geq 0}$ in state $i$, that is, $D_i = E[Y_{n+1} - Y_n|Y_n = i]$.
 \end{problem}
 
+\begin{solution}
+  Consider the DTMC with $p_{i,i+1}=p_{i,i-1}=\frac{1}{2}$. We calculate the drift
+  \[
+    D_i = (-1)p_{i,i-1} + 1\cdot p_{i,i+1} = 0
+  \]
+
+  The corresponding rate matrix has entries $q_{i,i-1} = q_{i,i+1} = 1$ and $q_{i,i} = -2$. (Except for state 0, where $q_{0,0}=-1$ and $q_{0,1}=1$)
+\end{solution}
+
 \begin{problem}{Applications}
 Consider an M/M/C queue. Suppose we increase the arrival rate and the rate of each of the $C$ servers by a factor $k$. Does this affect the queue length distribution? Explain. What about the mean response time? [Hint: You can answer this last question using a simple formula].
 \end{problem}

@@ -23,12 +23,26 @@ Consider a DTMC with state space \( \mathbb{Z} \). Let \( p_{0,1} = \frac{1}{2} 
 \end{problem}
 
 \begin{solution}
-  The DTMC is irreducible, each state communicates with every other state. There are no transient states, as the probability to revisit a state is never 0. The mean time between two visits of a state could be infinite however, since
+  %The DTMC is irreducible, each state communicates with every other state. There are no transient states, as the probability to revisit a state is never 0. The mean time between two visits of a state could be infinite however, since
+  %\[
+  %  \lim_{i\rightarrow -\infty} e^{\frac{i}{100}} = 0 \text{ and } \lim_{i\rightarrow \infty} e^{\frac{-i}{100}} = 0
+  %\]
+  The DTMC is irreducible, each state communicates with every other state. We find the drift for state $i$
   \[
-    \lim_{i\rightarrow -\infty} e^{\frac{i}{100}} = 0 \text{ and } \lim_{i\rightarrow \infty} e^{\frac{-i}{100}} = 0
+    D_i=\sum_{k=-i}^\infty kp_{i,i+k}
   \]
+  \begin{align*}
+    D_i &= 1\cdot e^{-i/100}+(-1)(1-e^{-i/100}) = 2e^{-i/100} - 1  \text{ for } i > 0\\
+    D_i &=1 \cdot (1-e^{i/100})+(-1)(e^{i/100}) = 1-2e^{i/100} \text{ for } i < 0
+  \end{align*}
 
-  Therefore, the DTMC is null recurrent.
+  \begin{itemize}
+    \item $i\rightarrow \infty$, we see that the drift is negative and goes to $-1$.
+    \item $i\rightarrow -\infty$, the drift goes to 1. But since we are working with negative states, this is a drift back to the positives (Reverse case as above).
+  \end{itemize}
+  The chain is therefore positive recurrent with $\delta = 1$.
+
+  \textbf{Note}: It might be that I abused Pakes' lemma here.
 \end{solution}
 
 \begin{problem}{Repairing Servers}
